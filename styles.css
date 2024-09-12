@@ -1,0 +1,20 @@
+body {
+    background-color: rgb(255, 255, 255);
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 90%;
+    margin: auto;
+}
+
+.button {
+  font-size: 2em;
+  background-color: white;
+  border: 0.1em solid black;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  margin-bottom: 2em;
+  align-items: center;
+}
+.button:hover {
+  background-color: black;
+  color: white;
+}
