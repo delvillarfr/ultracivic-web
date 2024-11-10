@@ -25,6 +25,9 @@ body {
         color: rgb(30,30,30);
     }
 }
+:root {
+     color-scheme: light only;
+}
 
 /* Classes regarding email collection */
     .email-input {
