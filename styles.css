@@ -19,7 +19,7 @@ body {
     background-color: rgb(250,250,250);
     color: rgb(30,30,30);
 }
-/*
+
 @media (prefers-color-scheme: dark) {
     body {
         background-color: rgb(250,250,250);
@@ -43,8 +43,16 @@ body {
       padding: 10px;
       text-align: justify;
     }
+
+    .email-input {
+        background-color: rgb(250,250,250);
+        height: 3rem;
+        border-style: none none solid;
+        padding: 0 0 0 0.5rem;
+        font-size: 1.5rem;
+    }
 }
-*/
+
 
 /* Classes regarding email collection */
     .email-input {
