@@ -112,6 +112,17 @@ p {
     font-weight: 400;
 }
 
+.h4-specs {
+    font-size: 1.4rem;
+    font-weight: 300;
+}
+
+.h5-specs {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+
 .text-specs {
     font-size: 1.2rem;
     font-weight: 400;
