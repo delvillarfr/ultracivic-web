@@ -397,16 +397,16 @@
 .img-sun {
     position: absolute;
     right: 8vh;
-    top: 10vh;
-    z-index: -1;
+    top: 6vh;
+    z-index: 4;
     height: 250px;
     width: auto;
 }
 .img-earth {
     position: absolute;
     left: 10vh;
-    bottom: 30vh;
-    z-index: -1;
+    bottom: 30%;
+    z-index: 4;
     height: 175px;
     width: auto;
 }
@@ -414,6 +414,7 @@
     .img-sun {
         height: 200px;
         right: 15px;
+        top: 10vh;
     }
     .img-earth {
         height: 140px;
@@ -431,10 +432,9 @@
 @media only screen and (max-width: 565px) {
     .img-sun {
         height: 100px;
-        top: 20vh;
+        top: 15vh;
     }
     .img-earth {
         height: 70px;
-        bottom: 28vh;
     }
 }
