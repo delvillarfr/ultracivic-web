@@ -438,3 +438,19 @@
         height: 70px;
     }
 }
+
+/* Portrait Picture */
+.portrait-pic {
+    width: 200px;
+    height: auto;
+}
+@media only screen and (max-width: 983px) {
+    .portrait-pic {
+        width: 150px;
+    }
+}
+@media only screen and (max-width: 565px) {
+    .portrait-pic {
+        width: 120px;
+    }
+}
