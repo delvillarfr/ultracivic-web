@@ -47,23 +47,23 @@
     }
 
 /* Basic classes */
-.flexdiv {
-    display: flex;
-    justify-content: center;
-    padding: 15px;
-}
-.center {
-    align-items: center;
-    text-align: center;
-}
-.start-center {
-    align-items: start;
-    text-align: center;
-}
-.end-center {
-    align-items: end;
-    text-align: center;
-}
+    .flexdiv {
+        display: flex;
+        justify-content: center;
+        padding: 15px;
+    }
+    .center {
+        align-items: center;
+        text-align: center;
+    }
+    .start-center {
+        align-items: start;
+        text-align: center;
+    }
+    .end-center {
+        align-items: end;
+        text-align: center;
+    }
 
 /* Navigation bar and links */
     .navbar {
@@ -387,70 +387,86 @@
         55%, 100% { opacity: 1; }
     }
 
-/* Poems */
-.poem-p {
-    line-height: 1.5rem;
-    width: 327px;
-}
-
 /* Background Images */
-.img-sun {
-    position: absolute;
-    right: 8vh;
-    top: 6vh;
-    z-index: 4;
-    height: 250px;
-    width: auto;
-}
-.img-earth {
-    position: absolute;
-    left: 10vh;
-    bottom: 30%;
-    z-index: 4;
-    height: 175px;
-    width: auto;
-}
-@media only screen and (max-width: 1325px) {
     .img-sun {
-        height: 200px;
-        right: 15px;
-        top: 10vh;
+        position: absolute;
+        right: 8vh;
+        top: 6vh;
+        z-index: 4;
+        height: 250px;
+        width: auto;
     }
     .img-earth {
-        height: 140px;
-        left: 15px;
+        position: absolute;
+        left: 10vh;
+        bottom: 30%;
+        z-index: 4;
+        height: 175px;
+        width: auto;
     }
-}
-@media only screen and (max-width: 983px) {
-    .img-sun {
-        height: 150px;
+    @media only screen and (max-width: 1325px) {
+        .img-sun {
+            height: 200px;
+            right: 15px;
+            top: 10vh;
+        }
+        .img-earth {
+            height: 140px;
+            left: 15px;
+        }
     }
-    .img-earth {
-        height: 105px;
+    @media only screen and (max-width: 983px) {
+        .img-sun {
+            height: 150px;
+        }
+        .img-earth {
+            height: 105px;
+        }
     }
-}
-@media only screen and (max-width: 565px) {
-    .img-sun {
-        height: 100px;
-        top: 15vh;
+    @media only screen and (max-width: 565px) {
+        .img-sun {
+            height: 100px;
+            top: 15vh;
+        }
+        .img-earth {
+            height: 70px;
+        }
     }
-    .img-earth {
-        height: 70px;
-    }
-}
 
 /* Portrait Picture */
-.portrait-pic {
-    width: 200px;
-    height: auto;
-}
-@media only screen and (max-width: 983px) {
     .portrait-pic {
-        width: 150px;
+        width: 200px;
+        height: auto;
     }
-}
-@media only screen and (max-width: 565px) {
-    .portrait-pic {
-        width: 120px;
+    @media only screen and (max-width: 983px) {
+        .portrait-pic {
+            width: 150px;
+        }
     }
+    @media only screen and (max-width: 565px) {
+        .portrait-pic {
+            width: 120px;
+        }
+    }
+
+/* Poem */
+    .poem-p {
+        line-height: 1.5rem;
+        width: 327px;
+    }
+    @media only screen and (max-width: 975px) {
+        .poem-p {
+            width: 302px;
+        }
+    }
+    @media only screen and (max-width: 565px) {
+        .poem-p {
+            width: 277px;
+        }
+    }
+    @media only screen and (max-width: 374px) {
+        .poem-p {
+            line-height: 1.2rem;
+            width: 252px;
+        }
 }
