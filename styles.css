@@ -137,13 +137,21 @@
         font-family: 'Atkinson Hyperlegible Regular';
         src: url('./fonts/Atkinson-Hyperlegible-Regular-102.otf') format('truetype');
     }
+    @font-face {
+        font-family: 'CantedComic Regular';
+        src: url('./fonts/CantedComic Regular.otf') format('truetype');
+    }
     .atkinson {
         font-family: "Atkinson Hyperlegible Regular";
         font-weight: 599; /* Light version */
     }
+    .canted {
+        font-family: "CantedComic Regular";
+        font-weight: 599; /* Light version */
+    }
     .h1-specs { font-size: 4rem; }
     .h2-specs { font-size: 3rem; }
-    .h3-specs { font-size: 1.8rem; }
+    .h3-specs { font-size: 2.2rem; }
     .h4-specs { font-size: 1.5rem; }
     .navbar-font-specs { font-size: 1.3rem; }
     .text-specs { font-size: 1.3rem; }
@@ -294,6 +302,169 @@
       display: none;
       padding: 10px;
       text-align: justify;
+    }
+
+/* Steps for what we do */
+    .explanation-step {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 45vh;
+        padding: 15px;
+        gap: clamp(15px, 5vw, 200px);
+    }
+    .explanation-step-text {
+        text-align: center;
+        width: 440px;
+    }
+    .explanation-step-image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 450px;
+    }
+    .explanation-step-image img {
+        height: 300px;
+        position: absolute;
+    }
+
+
+
+    @media only screen and (max-width: 983px) {
+        .explanation-step-text {
+            width: 300px;
+        }
+    }
+    @media only screen and (max-width: 890px) {
+        .explanation-step-text {
+            width: 250px;
+        }
+        .explanation-step-image {
+            width: 400px;
+        }
+        .explanation-step-image img {
+            height: 200px;
+        }
+    }
+    @media only screen and (max-width: 625px) {
+        .explanation-step {
+            flex-direction: column;
+            align-items: center;
+        }
+        .explanation-step-image {
+            display: flex;
+            justify-content: center;
+            height: 200px;
+        }
+        .explanation-step-image img {
+            height: 200px;
+            position: absolute;
+        }
+        .explanation-step-text {
+            width: 400px;
+        }
+    }
+    @media only screen and (max-width: 440px) {
+        .explanation-step-image {
+            height: 150px;
+        }
+        .explanation-step-image img {
+            height: 150px;
+        }
+        .explanation-step-text {
+            width: 300px;
+        }
+    }
+
+    .img-step1 {
+        opacity: 0;
+        animation: image-cycle-step-one 8s infinite;
+    }
+    @keyframes image-cycle-step-one {
+        0%, 30% { opacity: 0; }
+        35%, 100% { opacity: 1; }
+    }
+
+    .img-step2-first {
+        opacity: 1;
+        animation: image-cycle-steptwo 12s infinite;
+    }
+    .img-step2-second {
+        opacity: 0;
+        animation: image-cycle-steptwo 12s infinite;
+        /* image 2 should start when image 1 begins to fade
+         * i.e. at 22% of 12 seconds, or 2.64 seconds. */
+        animation-delay: 2.64s;
+    }
+    @keyframes image-cycle-steptwo {
+        6%, 22% { opacity: 1; }
+        28%, 100% { opacity: 0; }
+    }
+
+    .img-step2-third {
+        opacity: 0;
+        animation: image-cycle-steptwo-last 12s infinite;
+    }
+    /* image 3 should start when image 2 begins to fade
+     * i.e. at 22% + 22% = 44%. */
+    @keyframes image-cycle-steptwo-last {
+        0%, 44% { opacity: 0; }
+        50%, 100% { opacity: 1; }
+    }
+
+    .img-lights1-1 {
+        opacity: 1;
+        animation: image-cycle-lights 12s infinite;
+    }
+    .img-lights1-2 {
+        opacity: 0;
+        animation: image-cycle-lights 12s infinite;
+        /* The second lights begin when the first ones
+         * begin to face, at 11% of 12 seconds. */
+        animation-delay: 1.32s;
+    }
+    .img-lights2-1 {
+        opacity: 0;
+        animation: image-cycle-lights 12s infinite;
+        animation-delay: 2.64s;
+    }
+    .img-lights2-2 {
+        opacity: 0;
+        animation: image-cycle-lights 12s infinite;
+        animation-delay: 3.96s;
+    }
+    .img-lights3-1 {
+        opacity: 0;
+        animation: image-cycle-lights 12s infinite;
+        animation-delay: 5.28s;
+    }
+    .img-lights3-2 {
+        opacity: 0;
+        animation: image-cycle-lights 12s infinite;
+        animation-delay: 6.6s;
+    }
+    .img-lights3-3 {
+        opacity: 0;
+        animation: image-cycle-lights 12s infinite;
+        animation-delay: 7.92s;
+    }
+    .img-lights3-4 {
+        opacity: 0;
+        animation: image-cycle-lights 12s infinite;
+        animation-delay: 9.24s;
+    }
+    .img-lights3-5 {
+        opacity: 0;
+        animation: image-cycle-lights-last 12s infinite;
+        animation-delay: 10.56s;
+    }
+    @keyframes image-cycle-lights {
+        6%, 11% { opacity: 1; }
+        17%, 100% { opacity: 0; }
+    }
+    @keyframes image-cycle-lights-last {
+        6%, 12% { opacity: 1; }
+        13%, 100% { opacity: 0; }
     }
 
 /* Value Propositions */
