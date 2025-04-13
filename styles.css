@@ -15,58 +15,70 @@
             background-color: rgb(235,235,235);
             color: rgb(30,30,30);
         }
-
-        /* Style for FAQs */
-        .faq-question {
-            text-align: start;
-            background-color: rgb(235,235,235);
-            color: rgb(30,30,30);
-            border-style: none;
-            cursor: pointer;
-            transition: background 0.3s;
-            padding: 0 0.5rem;
-            transition: all 0.5s ease;
-        }
-        .faq-question:hover {
-            cursor: pointer;
-        }
-        .faq-answer {
-          display: none;
-          padding: 10px;
-          text-align: justify;
-        }
-
-        .email-input {
-            background-color: rgb(235,235,235);
-            color: rgb(30,30,30);
-            height: 3rem;
-            border-style: none none solid;
-            padding: 0 0 0 0.5rem;
-            font-size: 1.5rem;
-        }
     }
 
-/* Basic classes */
-    .flexdiv {
+/* Fonts */
+    @font-face {
+        font-family: 'Atkinson Hyperlegible Regular';
+        src: url('./fonts/Atkinson-Hyperlegible-Regular-102.otf') format('truetype');
+    }
+    @font-face {
+        font-family: 'Atkinson Hyperlegible Next';
+        src: url('./fonts/Atkinson Hyperlegible Next_Final/Atkinson Hyperlegible Next/AtkinsonHyperlegibleNext-Regular.otf');
+    }
+    @font-face {
+        font-family: 'CantedComic Regular';
+        src: url('./fonts/CantedComic Regular.otf');
+    }
+    .atkinson {
+        font-family: "Atkinson Hyperlegible Next";
+    }
+    .canted {
+        font-family: "CantedComic Regular";
+        font-weight: 599; /* Light version */
+    }
+    .h1-specs { font-size: 2.5rem; }
+    .h2-specs { font-size: 2rem; }
+    .h3-specs { font-size: 1.3rem; }
+    .h4-specs { font-size: 1.5rem; }
+    .navbar-font-specs { font-size: 1.2rem; }
+    .text-specs { font-size: 1.3rem; }
+    .faqtext-specs { font-size: 1.2rem; }
+    @media only screen and (max-width: 975px) {
+        .h1-specs { font-size: 2.5rem; }
+        .h2-specs { font-size: 2.5rem; }
+        .h3-specs { font-size: 1.3rem; }
+        .h4-specs { font-size: 1.3rem; }
+        .text-specs { font-size: 1.2rem; }
+    }
+    @media only screen and (max-width: 625px) {
+        .h1-specs { font-size: 2rem; }
+        .h2-specs { font-size: 2rem; }
+        .h3-specs { font-size: 1rem; }
+        .navbar-font-specs { font-size: 1rem; }
+        .text-specs { font-size: 1.1rem; }
+        .faqtext-specs { font-size: 1.1rem; }
+    }
+    @media only screen and (max-width: 480px) {
+        .h1-specs { font-size: 1.5rem; }
+        .h2-specs { font-size: 1.8rem; }
+        .h3-specs { font-size: 1rem; }
+        .faqtext-specs { font-size: 1rem; }
+    }
+    @media only screen and (max-width: 374px) {
+        .h1-specs { font-size: 1.5rem; }
+        .h2-specs { font-size: 1.6rem; }
+        .h3-specs { font-size: 1rem; }
+        .text-specs { font-size: 1rem; }
+    }
+
+/* Navigation bar */
+    .navbar {
         display: flex;
         justify-content: center;
-        padding: 15px;
-    }
-    .center {
         align-items: center;
         text-align: center;
-    }
-    .start-center {
-        align-items: start;
-        text-align: center;
-    }
-    .end-center {
-        align-items: end;
-        text-align: center;
-    }
-
-/* Navigation bar and links */
-    .navbar {
+        padding: 15px;
         height: 75px;
         gap: clamp(15px, 5vw, 100px);
     }
@@ -90,184 +102,6 @@
         .navlink-logo { height: 19px; }
     }
 
-/* Email collection */
-    .email-input {
-        background-color: rgb(235,235,235);
-        color: rgb(30,30,30);
-        height: 3rem;
-        border-style: none none solid;
-        padding: 0 0 0 0.5rem;
-        font-size: 1.5rem;
-    }
-    .email-input:focus {
-        background-color: rgb(242, 242, 242);
-        transition: all 0.5s ease;
-        outline: none;
-    }
-    .email-button {
-        background-color: rgb(235,235,235);
-        color: rgb(30,30,30);
-        border-style: solid;
-        font-size: 1.5rem;
-        padding: 0.5rem 1rem;
-        transition: all 0.5s ease;
-    }
-    .email-button:hover {
-        transform: scale(1.2);
-        cursor: pointer;
-    }
-    .email-button:active {
-        background-color: black;
-    }
-    .clicked {
-        background-color: rgb(221, 237, 232);
-    }
-    #focus-image {
-        display: none;
-        transition: all 1.5s ease;
-    }
-
-/* Paragraphs */
-    p {
-        margin-bottom: 1rem; /* between paragraphs */
-    }
-
-/* Fonts */
-    @font-face {
-        font-family: 'Atkinson Hyperlegible Regular';
-        src: url('./fonts/Atkinson-Hyperlegible-Regular-102.otf') format('truetype');
-    }
-    .atkinson {
-        font-family: "Atkinson Hyperlegible Regular";
-        font-weight: 599; /* Light version */
-    }
-    .h1-specs { font-size: 4rem; }
-    .h2-specs { font-size: 3rem; }
-    .h3-specs { font-size: 1.8rem; }
-    .h4-specs { font-size: 1.5rem; }
-    .navbar-font-specs { font-size: 1.3rem; }
-    .text-specs { font-size: 1.3rem; }
-    .faqtext-specs { font-size: 1.2rem; }
-    @media only screen and (max-width: 975px) {
-        .h1-specs { font-size: 3rem; }
-        .h2-specs { font-size: 2.5rem; }
-        .h3-specs { font-size: 1.5rem; }
-        .h4-specs { font-size: 1.3rem; }
-        .text-specs { font-size: 1.2rem; }
-    }
-    @media only screen and (max-width: 565px) {
-        .h1-specs { font-size: 2.5rem; }
-        .h2-specs { font-size: 2rem; }
-        .h3-specs { font-size: 1.3rem; }
-        .navbar-font-specs { font-size: 1rem; }
-        .text-specs { font-size: 1.1rem; }
-        .faqtext-specs { font-size: 1.1rem; }
-    }
-    @media only screen and (max-width: 480px) {
-        .h1-specs { font-size: 1.9rem; }
-        .h2-specs { font-size: 1.8rem; }
-        .h3-specs { font-size: 1.2rem; }
-        .faqtext-specs { font-size: 1rem; }
-    }
-    @media only screen and (max-width: 374px) {
-        .h1-specs { font-size: 1.7rem; }
-        .h2-specs { font-size: 1.6rem; }
-        .h3-specs { font-size: 1rem; }
-        .text-specs { font-size: 1rem; }
-    }
-
-/* Logo */
-    .logo-image {
-        height: 1.1rem;
-        width: auto;
-    }
-    @media only screen and (max-width: 956px) {
-        .logo-image {
-            height: 1.1rem;
-            width: auto;
-        }
-    }
-
-/* Comic vignettes */
-    .vignette-template {
-        display: grid;
-        grid-template-columns: auto 320px auto;
-        padding-top: 5em;
-    }
-    .vignette-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        row-gap: 5px;
-        justify-items: center;
-    }
-    .vignette-grid img {
-        height: 150px;
-        width: auto;
-        object-fit: cover;
-    }
-    @media only screen and (min-width: 375px) {
-        .vignette-template {
-            grid-template-columns: auto 375px auto;
-        }
-        .vignette-grid img {
-          height: 175px;
-        }
-    }
-    @media only screen and (min-width: 455px) {
-        .vignette-template {
-            grid-template-columns: auto 455px auto;
-        }
-        .vignette-grid img {
-          height: 212px;
-        }
-    }
-    @media only screen and (min-width: 768px) {
-        .vignette-template {
-            grid-template-columns: auto 768px auto;
-        }
-        .vignette-grid {
-            grid-template-columns: 3fr 1fr 2fr 2fr 1fr 3fr; 
-        }
-        .vignette-grid img {
-          height: 175px;
-        }
-        .vgn-el {
-            grid-column: 1/3;
-        }
-        .vgn-em {
-            grid-column: 3/5;
-        }
-        .vgn-er {
-            grid-column: 5/7;
-        }
-        .vgn-ll {
-            grid-column: 1/4;
-        }
-        .vgn-lm {
-            grid-column: 2/6;
-        }
-        .vgn-lr {
-            grid-column: 4/7;
-        }
-        .vgn-sl {
-            grid-column: 1/2;
-        }
-        .vgn-sr {
-            grid-column: 6/7;
-        }
-        .vgn-fw {
-            grid-column: 1/7;
-        }
-    }
-    @media only screen and (min-width: 1086px) {
-        .vignette-grid img {
-          height: 212px;
-        }
-        .vignette-template {
-            grid-template-columns: auto 930px auto;
-        }
-    }
-
 /* Footer */
     .footer {
         color: rgb(250,250,250);
@@ -275,6 +109,253 @@
         display: grid;
         grid-column: 1/5;
     }
+
+/* Intro */
+    .intro {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: 30vh;
+    }
+    @media only screen and (max-width: 625px) {
+        .intro {
+            height: 20vh;
+        }
+    }
+
+    /* Enter key */
+        .enter {
+            height: 1.3rem;
+            position: absolute;
+        }
+        @media only screen and (max-width: 565px) {
+            .enter { height: 1rem; }
+        }
+
+/* The three explanation steps */
+    .explanation-step {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 25vh;
+        padding: 25px;
+        gap: 5vw;
+    }
+    .explanation-step-text {
+        text-align: center;
+        width: 300px;
+    }
+    .explanation-step-image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 250px;
+    }
+    .explanation-step-image img {
+        height: 150px;
+        position: absolute;
+    }
+    @media only screen and (max-width: 625px) {
+        .explanation-step {
+            flex-direction: column;
+            gap: 2vw;
+            padding: 15px;
+        }
+        .explanation-step-image {
+            height: 150px;
+        }
+        .explanation-step-image img {
+            height: 120px;
+        }
+    }
+
+    /* Step 1 */
+        .img-step1 {
+            opacity: 0;
+            animation: image-cycle-step-one 12s infinite;
+            animation-delay: 3s;
+        }
+        @keyframes image-cycle-step-one {
+            0%, 12.5% { opacity: 0; }
+            16.67%, 100% { opacity: 1; }
+        }
+
+    /* Step 2 */
+        .img-step2-smoke {
+            opacity: 0;
+            animation: image-cycle-smoke 12s infinite;
+        }
+        @keyframes image-cycle-smoke {
+            16.67%, 66.67% { opacity: 0; }
+            33.33%, 50% { opacity: 1; }
+        }
+        .img-step2-premise {
+            opacity: 0;
+            animation: image-cycle-premise 12s infinite;
+        }
+        @keyframes image-cycle-premise {
+            12.5% { opacity: 0; }
+            16.67%, 100% { opacity: 1; }
+        }
+        .img-step2-servers {
+            opacity: 0;
+            animation: image-cycle-servers 12s infinite;
+        }
+        @keyframes image-cycle-servers {
+            16.66% { opacity: 0; }
+            20.83%, 100% { opacity: 1; }
+        }
+        .img-step2-punchline {
+            opacity: 0;
+            animation: image-cycle-punchline 12s infinite;
+        }
+        @keyframes image-cycle-punchline {
+            45.83% { opacity: 0; }
+            50%, 100% { opacity: 1; }
+        }
+
+    /* Lights in step 2 */
+        .img-lights1 {
+            opacity: 1;
+            animation: image-cycle-lights 12s infinite;
+        }
+        .img-lights2 {
+            opacity: 0;
+            animation: image-cycle-lights 12s infinite;
+            animation-delay: 2s;
+        }
+        .img-lights3 {
+            opacity: 0;
+            animation: image-cycle-lights 12s infinite;
+            animation-delay: 2s;
+        }
+        .img-lights4 {
+            opacity: 0;
+            animation: image-cycle-lights 12s infinite;
+            animation-delay: 4s;
+        }
+        .img-lights5 {
+            opacity: 0;
+            animation: image-cycle-lights 12s infinite;
+            animation-delay: 6s;
+        }
+        .img-lights6 {
+            opacity: 0;
+            animation: image-cycle-lights 12s infinite;
+            animation-delay: 8s;
+        }
+        .img-lights7 {
+            opacity: 0;
+            animation: image-cycle-lights-last 12s infinite;
+            animation-delay: 10s;
+        }
+        @keyframes image-cycle-lights {
+            2%, 16.67% { opacity: 1; }
+            19%, 100% { opacity: 0; }
+        }
+        @keyframes image-cycle-lights-last {
+            2%, 16.67% { opacity: 1; }
+            16.68%, 100% { opacity: 0; }
+        }
+
+/* Haiku */
+    .haiku-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 35vh;
+    }
+    .haiku-image img {
+        height: 100px;
+        position: absolute;
+    }
+    .img-haiku {
+        opacity: 0;
+        animation: cursor-cycle 1.2s infinite;
+    }
+    @keyframes cursor-cycle {
+        0%, 50% { opacity: 0; }
+        51%, 100% { opacity: 1; }
+    }
+
+    @media only screen and (max-width: 625px) {
+        .haiku-image {
+            height: 20vh;
+        }
+        .haiku-image img {
+            height: 70px;
+        }
+    }
+
+/* Outro */
+    .outro-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 40vh;
+    }
+    .outro-image img {
+        height: 300px;
+        position: absolute;
+    }
+    @media only screen and (max-width: 625px) {
+        .outro-image {
+            min-height: 30vh;
+        }
+        .outro-image img {
+            height: 250px;
+        }
+    }
+    @media only screen and (max-width: 480px) {
+        .outro-image img {
+            height: 200px;
+        }
+    }
+    @media only screen and (max-width: 345px) {
+        .outro-image img {
+            height: 150px;
+        }
+    }
+
+/* Portrait Picture */
+    .portrait-pic {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: 60vh;
+    }
+    .portrait-pic img {
+        width: 400px;
+    }
+    .bio {
+        display: flex;
+        flex-direction: column;
+        justify-content: start center;
+        align-items: center;
+        height: 40vh;
+    }
+    .bio-text {
+        height: 15vh;
+        padding: 30px;
+        max-width: 25em;
+    }
+    @media only screen and (max-width: 625px) {
+        .portrait-pic {
+            height: 40vh;
+        }
+        .portrait-pic img {
+            width: 300px;
+        }
+    }
+    @media only screen and (max-width: 100px) {
+        .portrait-pic img {
+            width: 120px;
+        }
+    }
+
 
 /* FAQs */
     .faq-question {
@@ -296,157 +377,9 @@
       text-align: justify;
     }
 
-/* Value Propositions */
-    .value-prop-title {
-        min-height: 20vh;
-    }
-    .value-prop {
-        display: flex;
-        justify-content: center;
-        min-height: 45vh;
-        padding: 15px;
-        gap: clamp(15px, 5vw, 200px);
-    }
-    .value-prop-text {
-        display: flex;
-        width: 300px;
-        text-align: start;
-        align-items: center;
-    }
-    .value-prop-image {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 550px;
-    }
-    .value-prop-image img {
-        height: 300px;
-        position: absolute;
-    }
-
-    @media only screen and (max-width: 983px) {
-        .value-prop-text {
-            width: 300px;
-        }
-    }
-    @media only screen and (max-width: 890px) {
-        .value-prop-text {
-            width: 250px;
-        }
-        .value-prop-image {
-            width: 400px;
-        }
-        .value-prop-image img {
-            height: 200px;
-        }
-    }
-    @media only screen and (max-width: 625px) {
-        .value-prop {
-            flex-direction: column;
-            align-items: center;
-        }
-        .value-prop-image {
-            display: flex;
-            justify-content: center;
-            height: 200px;
-        }
-        .value-prop-image img {
-            height: 200px;
-            position: absolute;
-        }
-        .value-prop-text {
-            width: 400px;
-        }
-    }
-    @media only screen and (max-width: 440px) {
-        .value-prop-image {
-            height: 150px;
-        }
-        .value-prop-image img {
-            height: 150px;
-        }
-        .value-prop-text {
-            width: 300px;
-        }
-    }
-
-    .img-first {
-        opacity: 1;
-        animation: image-cycle1 5s infinite;
-    }
-    .img-second {
-        opacity: 0;
-        animation: image-cycle2 5s infinite;
-    }
-    @keyframes image-cycle1 {
-        0%, 30% { opacity: 1; }
-        55%, 100% { opacity: 0; }
-    }
-    @keyframes image-cycle2 {
-        0%, 45% { opacity: 0; }
-        55%, 100% { opacity: 1; }
-    }
-
-/* Background Images */
-    .img-sun {
-        position: absolute;
-        right: 8vh;
-        top: 6vh;
-        z-index: 4;
-        height: 250px;
-        width: auto;
-    }
-    .img-earth {
-        position: absolute;
-        left: 10vh;
-        bottom: 30%;
-        z-index: 4;
-        height: 175px;
-        width: auto;
-    }
-    @media only screen and (max-width: 1325px) {
-        .img-sun {
-            height: 200px;
-            right: 15px;
-            top: 10vh;
-        }
-        .img-earth {
-            height: 140px;
-            left: 15px;
-        }
-    }
-    @media only screen and (max-width: 983px) {
-        .img-sun {
-            height: 150px;
-        }
-        .img-earth {
-            height: 105px;
-        }
-    }
-    @media only screen and (max-width: 565px) {
-        .img-sun {
-            height: 100px;
-            top: 15vh;
-        }
-        .img-earth {
-            height: 70px;
-        }
-    }
-
-/* Portrait Picture */
-    .portrait-pic {
-        width: 200px;
-        height: auto;
-    }
-    @media only screen and (max-width: 983px) {
-        .portrait-pic {
-            width: 150px;
-        }
-    }
-    @media only screen and (max-width: 565px) {
-        .portrait-pic {
-            width: 120px;
-        }
+/* Paragraphs */
+    p {
+        margin-bottom: 1rem; /* between paragraphs */
     }
 
 /* Poem */
