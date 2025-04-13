@@ -265,7 +265,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 35vh;
+        height: 75vh;
     }
     .haiku-image img {
         height: 100px;
@@ -281,9 +281,6 @@
     }
 
     @media only screen and (max-width: 625px) {
-        .haiku-image {
-            height: 20vh;
-        }
         .haiku-image img {
             height: 70px;
         }
@@ -294,16 +291,13 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        min-height: 40vh;
+        min-height: 50vh;
     }
     .outro-image img {
         height: 300px;
         position: absolute;
     }
     @media only screen and (max-width: 625px) {
-        .outro-image {
-            min-height: 30vh;
-        }
         .outro-image img {
             height: 250px;
         }
