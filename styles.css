@@ -118,21 +118,62 @@
         align-items: center;
         text-align: center;
         height: 30vh;
+        gap: 5vh;
     }
     @media only screen and (max-width: 625px) {
         .intro {
             height: 20vh;
         }
     }
+    .intro-text {
+        display: inline;
+    }
 
     /* Enter key */
         .enter {
-            height: 1.3rem;
-            position: absolute;
+            height: 1.2rem;
         }
         @media only screen and (max-width: 565px) {
             .enter { height: 1rem; }
         }
+
+    /* Animation */
+    .words::before {
+        animation: words 15s infinite;
+        content: "";
+        width: 5em;
+        display: inline-block; 
+    }
+    @keyframes words {
+        0% {content: "";}
+        1% {content: "y";}
+        2% {content: "yo";}
+        3% {content: "you";}
+        29% {content: "you";}
+        30% {content: "";}
+        31% {content: "y";}
+        32% {content: "yo";}
+        33% {content: "you";}
+        34% {content: "your";}
+        35% {content: "your ";}
+        36% {content: "your u";}
+        37% {content: "your us";}
+        38% {content: "your use";}
+        39% {content: "your user";}
+        40% {content: "your users";}
+        66% {content: "your users";}
+        67% {content: "";}
+        68% {content: "y";}
+        69% {content: "yo";}
+        70% {content: "you";}
+        71% {content: "your";}
+        72% {content: "your ";}
+        73% {content: "your t";}
+        74% {content: "your te";}
+        75% {content: "your tea";}
+        76% {content: "your team";}
+        100% {content: "your team";}
+    }
 
 /* The three explanation steps */
     .explanation-step {
@@ -369,11 +410,6 @@
       display: none;
       padding: 10px;
       text-align: justify;
-    }
-
-/* Paragraphs */
-    p {
-        margin-bottom: 1rem; /* between paragraphs */
     }
 
 /* Poem */
