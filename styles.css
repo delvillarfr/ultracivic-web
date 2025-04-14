@@ -123,6 +123,7 @@
     @media only screen and (max-width: 625px) {
         .intro {
             height: 20vh;
+            gap: 3vh;
         }
     }
     .intro-text {
