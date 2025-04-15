@@ -24,7 +24,11 @@
     }
     @font-face {
         font-family: 'Atkinson Hyperlegible Next';
-        src: url('./fonts/Atkinson Hyperlegible Next_Final/Atkinson Hyperlegible Next/AtkinsonHyperlegibleNext-Regular.otf');
+        src: url('./fonts/AtkinsonHyperlegibleNext-Regular.otf');
+    }
+    @font-face {
+        font-family: 'Atkinson Hyperlegible Next Bold';
+        src: url('./fonts/AtkinsonHyperlegibleNext-Bold.otf');
     }
     @font-face {
         font-family: 'CantedComic Regular';
@@ -32,6 +36,9 @@
     }
     .atkinson {
         font-family: "Atkinson Hyperlegible Next";
+    }
+    .atkinson-bold {
+        font-family: "Atkinson Hyperlegible Next Bold";
     }
     .canted {
         font-family: "CantedComic Regular";
@@ -42,34 +49,31 @@
     .h3-specs { font-size: 1.3rem; }
     .h4-specs { font-size: 1.5rem; }
     .navbar-font-specs { font-size: 1.2rem; }
-    .text-specs { font-size: 1.3rem; }
+    .text-specs { font-size: 1.1rem; }
     .faqtext-specs { font-size: 1.2rem; }
     @media only screen and (max-width: 975px) {
         .h1-specs { font-size: 2.5rem; }
-        .h2-specs { font-size: 2.5rem; }
+        .h2-specs { font-size: 2rem; }
         .h3-specs { font-size: 1.3rem; }
         .h4-specs { font-size: 1.3rem; }
-        .text-specs { font-size: 1.2rem; }
     }
     @media only screen and (max-width: 625px) {
         .h1-specs { font-size: 2rem; }
-        .h2-specs { font-size: 2rem; }
+        .h2-specs { font-size: 1.5rem; }
         .h3-specs { font-size: 1rem; }
         .navbar-font-specs { font-size: 1rem; }
-        .text-specs { font-size: 1.1rem; }
         .faqtext-specs { font-size: 1.1rem; }
     }
     @media only screen and (max-width: 480px) {
         .h1-specs { font-size: 1.5rem; }
-        .h2-specs { font-size: 1.8rem; }
+        .h2-specs { font-size: 1.2rem; }
         .h3-specs { font-size: 1rem; }
         .faqtext-specs { font-size: 1rem; }
     }
     @media only screen and (max-width: 374px) {
         .h1-specs { font-size: 1.5rem; }
-        .h2-specs { font-size: 1.6rem; }
+        .h2-specs { font-size: 1.2rem; }
         .h3-specs { font-size: 1rem; }
-        .text-specs { font-size: 1rem; }
     }
 
 /* Navigation bar */
@@ -118,20 +122,62 @@
         align-items: center;
         text-align: center;
         height: 30vh;
+        gap: 5vh;
     }
     @media only screen and (max-width: 625px) {
         .intro {
             height: 20vh;
+            gap: 3vh;
         }
+    }
+    .intro-text {
+        display: inline;
     }
 
     /* Enter key */
         .enter {
-            height: 1.3rem;
-            position: absolute;
+            height: 1.2rem;
         }
         @media only screen and (max-width: 565px) {
             .enter { height: 1rem; }
+        }
+
+    /* Animation */
+        .words::before {
+            animation: words 13s infinite;
+            content: "";
+            width: 5em;
+            display: inline-block; 
+        }
+        @keyframes words {
+            0% {content: "";}
+            1% {content: "y";}
+            2% {content: "yo";}
+            3% {content: "you";}
+            29% {content: "you";}
+            30% {content: "";}
+            31% {content: "y";}
+            32% {content: "yo";}
+            33% {content: "you";}
+            34% {content: "your";}
+            35% {content: "your ";}
+            36% {content: "your u";}
+            37% {content: "your us";}
+            38% {content: "your use";}
+            39% {content: "your user";}
+            40% {content: "your users";}
+            66% {content: "your users";}
+            67% {content: "";}
+            68% {content: "y";}
+            69% {content: "yo";}
+            70% {content: "you";}
+            71% {content: "your";}
+            72% {content: "your ";}
+            73% {content: "your t";}
+            74% {content: "your te";}
+            75% {content: "your tea";}
+            76% {content: "your team";}
+            100% {content: "your team";}
         }
 
 /* The three explanation steps */
@@ -260,6 +306,205 @@
             16.68%, 100% { opacity: 0; }
         }
 
+/* A climate action so easy, you can DIY */
+    .how-section-title {
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: center;
+        text-align: center;
+        height: 20vh;
+        padding: 15px;
+        gap: 15px;
+    }
+    .how-emissions {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 40vh;
+        gap: 1rem;
+    }
+    .how-emissions-image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 400px;
+    }
+    .how-emissions-image img {
+        width: 400px;
+        position: absolute;
+    }
+    .how-emissions-text {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        width: 23rem;
+    }
+    @media only screen and (max-width: 900px) {
+        .how-emissions {
+            flex-direction: column;
+            padding: 15px;
+            gap: 1rem;
+        }
+        .how-emissions-image {
+            width: auto;
+            height: 170px;
+        }
+        .how-emissions-image img {
+            width: auto;
+            height: 170px;
+        }
+    }
+    @media only screen and (max-width: 400px) {
+        .how-emissions-text {
+            width: 17rem;
+        }
+        .how-emissions-image {
+            height: 150px;
+        }
+        .how-emissions-image img {
+            height: 150px;
+        }
+    }
+
+    .img-emissions-smoke {
+        opacity: 1;
+        animation: image-cycle-emissions-smoke 6s infinite;
+    }
+    @keyframes image-cycle-emissions-smoke {
+        0%, 30% { opacity: 1; }
+        55%, 100% { opacity: 0; }
+    }
+    .img-emissions-permits {
+        opacity: 1;
+        animation: image-cycle-emissions-permits 6s infinite;
+    }
+    @keyframes image-cycle-emissions-permits {
+        0%, 30% { opacity: 1; }
+        31%, 100% { opacity: 0; }
+    }
+    .img-emissions-mountain {
+        opacity: 0;
+        animation: image-cycle-emissions-mountain 6s infinite;
+    }
+    @keyframes image-cycle-emissions-mountain {
+        0%, 30% { opacity: 0; }
+        40%, 100% { opacity: 1; }
+    }
+
+/* Crypto */
+    .how-section-title {
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: center;
+        text-align: center;
+        height: 20vh;
+        padding: 15px;
+        gap: 15px;
+    }
+    .how-crypto {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 55vh;
+        gap: 4rem;
+        margin-bottom: 20vh;
+    }
+    .how-crypto-image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 400px;
+    }
+    .how-crypto-image img {
+        width: 400px;
+        position: absolute;
+    }
+    .how-crypto-text {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 23rem;
+    }
+    @media only screen and (max-width: 900px) {
+        .how-crypto {
+            flex-direction: column;
+            gap: 2rem;
+            padding: 15px;
+        }
+        .how-crypto-image {
+            width: auto;
+            height: 170px;
+        }
+        .how-crypto-image img {
+            width: auto;
+            height: 170px;
+        }
+    }
+    @media only screen and (max-width: 400px) {
+        .how-crypto-text {
+            width: 17rem;
+        }
+        .how-crypto-image {
+            height: 150px;
+        }
+        .how-crypto-image img {
+            height: 150px;
+        }
+    }
+
+    .img-crypto-door {
+        opacity: 1;
+        animation: image-cycle-crypto-door 9s infinite;
+    }
+    @keyframes image-cycle-crypto-door {
+        0%, 55% { opacity: 1; }
+        56%, 100% { opacity: 0; }
+    }
+    .img-crypto-permit1 {
+        opacity: 1;
+        animation: image-cycle-crypto-permit-first 9s infinite;
+    }
+    @keyframes image-cycle-crypto-permit-first {
+        0%, 10% { opacity: 1; }
+        15%, 100% { opacity: 0; }
+    }
+    .img-crypto-permit2 {
+        opacity: 0;
+        animation: image-cycle-crypto-permit-second 9s infinite;
+    }
+    @keyframes image-cycle-crypto-permit-second {
+        0%, 10% { opacity: 0; }
+        15%, 25% { opacity: 1; }
+        30%, 100% { opacity: 0; }
+    }
+    .img-crypto-permit3 {
+        opacity: 0;
+        animation: image-cycle-crypto-permit-third 9s infinite;
+    }
+    @keyframes image-cycle-crypto-permit-third {
+        0%, 25% { opacity: 0; }
+        30%, 40% { opacity: 1; }
+        45%, 100% { opacity: 0; }
+    }
+    .img-crypto-hole {
+        opacity: 0;
+        animation: image-cycle-crypto-hole 9s infinite;
+    }
+    @keyframes image-cycle-crypto-hole {
+        0%, 60% { opacity: 0; }
+        70%, 100% { opacity: 1; }
+    }
+    .img-crypto-reward {
+        opacity: 0;
+        animation: image-cycle-crypto-reward 9s infinite;
+    }
+    @keyframes image-cycle-crypto-reward {
+        0%, 65% { opacity: 0; }
+        80%, 100% { opacity: 1; }
+    }
+
 /* Haiku */
     .haiku-image {
         display: flex;
@@ -313,7 +558,7 @@
         }
     }
 
-/* Portrait Picture */
+/* About */
     .portrait-pic {
         display: flex;
         justify-content: center;
@@ -330,11 +575,11 @@
         justify-content: start center;
         align-items: center;
         height: 40vh;
+        gap: 3rem;
+        padding: 30px;
     }
     .bio-text {
-        height: 15vh;
-        padding: 30px;
-        max-width: 25em;
+        width: 24em;
     }
     @media only screen and (max-width: 625px) {
         .portrait-pic {
@@ -343,11 +588,31 @@
         .portrait-pic img {
             width: 300px;
         }
-    }
-    @media only screen and (max-width: 100px) {
-        .portrait-pic img {
-            width: 120px;
+        .bio {
+            height: 60vh;
         }
+    }
+    @media only screen and (max-width: 450px) {
+        .bio-text {
+            width: 15em;
+        }
+        .portrait-pic img {
+            width: 250px;
+        }
+    }
+
+/* Footer */
+    .footer {
+        display: flex;
+        flex-direction: column;
+        padding: 30px;
+        justify-content: start;
+        background-color: rgb(30,30,30);
+        color: rgb(220,220,220);
+    }
+    .footer-logo {
+        height: 1.3rem;
+        margin-bottom: 1rem;
     }
 
 
@@ -370,30 +635,3 @@
       padding: 10px;
       text-align: justify;
     }
-
-/* Paragraphs */
-    p {
-        margin-bottom: 1rem; /* between paragraphs */
-    }
-
-/* Poem */
-    .poem-p {
-        line-height: 1.5rem;
-        width: 327px;
-    }
-    @media only screen and (max-width: 975px) {
-        .poem-p {
-            width: 302px;
-        }
-    }
-    @media only screen and (max-width: 565px) {
-        .poem-p {
-            width: 277px;
-        }
-    }
-    @media only screen and (max-width: 374px) {
-        .poem-p {
-            line-height: 1.2rem;
-            width: 252px;
-        }
-}
