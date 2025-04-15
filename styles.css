@@ -49,21 +49,19 @@
     .h3-specs { font-size: 1.3rem; }
     .h4-specs { font-size: 1.5rem; }
     .navbar-font-specs { font-size: 1.2rem; }
-    .text-specs { font-size: 1.3rem; }
+    .text-specs { font-size: 1.1rem; }
     .faqtext-specs { font-size: 1.2rem; }
     @media only screen and (max-width: 975px) {
         .h1-specs { font-size: 2.5rem; }
         .h2-specs { font-size: 2rem; }
         .h3-specs { font-size: 1.3rem; }
         .h4-specs { font-size: 1.3rem; }
-        .text-specs { font-size: 1.2rem; }
     }
     @media only screen and (max-width: 625px) {
         .h1-specs { font-size: 2rem; }
         .h2-specs { font-size: 1.5rem; }
         .h3-specs { font-size: 1rem; }
         .navbar-font-specs { font-size: 1rem; }
-        .text-specs { font-size: 1.1rem; }
         .faqtext-specs { font-size: 1.1rem; }
     }
     @media only screen and (max-width: 480px) {
@@ -76,7 +74,6 @@
         .h1-specs { font-size: 1.5rem; }
         .h2-specs { font-size: 1.2rem; }
         .h3-specs { font-size: 1rem; }
-        .text-specs { font-size: 1rem; }
     }
 
 /* Navigation bar */
@@ -431,6 +428,14 @@
         .how-crypto-image img {
             width: auto;
             height: 170px;
+        }
+    }
+    @media only screen and (max-width: 625px) {
+        .how-crypto-text {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+            width: 300px;
         }
     }
 
