@@ -24,7 +24,11 @@
     }
     @font-face {
         font-family: 'Atkinson Hyperlegible Next';
-        src: url('./fonts/Atkinson Hyperlegible Next_Final/Atkinson Hyperlegible Next/AtkinsonHyperlegibleNext-Regular.otf');
+        src: url('./fonts/AtkinsonHyperlegibleNext-Regular.otf');
+    }
+    @font-face {
+        font-family: 'Atkinson Hyperlegible Next Bold';
+        src: url('./fonts/AtkinsonHyperlegibleNext-Bold.otf');
     }
     @font-face {
         font-family: 'CantedComic Regular';
@@ -32,6 +36,9 @@
     }
     .atkinson {
         font-family: "Atkinson Hyperlegible Next";
+    }
+    .atkinson-bold {
+        font-family: "Atkinson Hyperlegible Next Bold";
     }
     .canted {
         font-family: "CantedComic Regular";
@@ -46,14 +53,14 @@
     .faqtext-specs { font-size: 1.2rem; }
     @media only screen and (max-width: 975px) {
         .h1-specs { font-size: 2.5rem; }
-        .h2-specs { font-size: 2.5rem; }
+        .h2-specs { font-size: 2rem; }
         .h3-specs { font-size: 1.3rem; }
         .h4-specs { font-size: 1.3rem; }
         .text-specs { font-size: 1.2rem; }
     }
     @media only screen and (max-width: 625px) {
         .h1-specs { font-size: 2rem; }
-        .h2-specs { font-size: 2rem; }
+        .h2-specs { font-size: 1.5rem; }
         .h3-specs { font-size: 1rem; }
         .navbar-font-specs { font-size: 1rem; }
         .text-specs { font-size: 1.1rem; }
@@ -61,13 +68,13 @@
     }
     @media only screen and (max-width: 480px) {
         .h1-specs { font-size: 1.5rem; }
-        .h2-specs { font-size: 1.8rem; }
+        .h2-specs { font-size: 1.2rem; }
         .h3-specs { font-size: 1rem; }
         .faqtext-specs { font-size: 1rem; }
     }
     @media only screen and (max-width: 374px) {
         .h1-specs { font-size: 1.5rem; }
-        .h2-specs { font-size: 1.6rem; }
+        .h2-specs { font-size: 1.2rem; }
         .h3-specs { font-size: 1rem; }
         .text-specs { font-size: 1rem; }
     }
@@ -139,42 +146,42 @@
         }
 
     /* Animation */
-    .words::before {
-        animation: words 15s infinite;
-        content: "";
-        width: 5em;
-        display: inline-block; 
-    }
-    @keyframes words {
-        0% {content: "";}
-        1% {content: "y";}
-        2% {content: "yo";}
-        3% {content: "you";}
-        29% {content: "you";}
-        30% {content: "";}
-        31% {content: "y";}
-        32% {content: "yo";}
-        33% {content: "you";}
-        34% {content: "your";}
-        35% {content: "your ";}
-        36% {content: "your u";}
-        37% {content: "your us";}
-        38% {content: "your use";}
-        39% {content: "your user";}
-        40% {content: "your users";}
-        66% {content: "your users";}
-        67% {content: "";}
-        68% {content: "y";}
-        69% {content: "yo";}
-        70% {content: "you";}
-        71% {content: "your";}
-        72% {content: "your ";}
-        73% {content: "your t";}
-        74% {content: "your te";}
-        75% {content: "your tea";}
-        76% {content: "your team";}
-        100% {content: "your team";}
-    }
+        .words::before {
+            animation: words 13s infinite;
+            content: "";
+            width: 5em;
+            display: inline-block; 
+        }
+        @keyframes words {
+            0% {content: "";}
+            1% {content: "y";}
+            2% {content: "yo";}
+            3% {content: "you";}
+            29% {content: "you";}
+            30% {content: "";}
+            31% {content: "y";}
+            32% {content: "yo";}
+            33% {content: "you";}
+            34% {content: "your";}
+            35% {content: "your ";}
+            36% {content: "your u";}
+            37% {content: "your us";}
+            38% {content: "your use";}
+            39% {content: "your user";}
+            40% {content: "your users";}
+            66% {content: "your users";}
+            67% {content: "";}
+            68% {content: "y";}
+            69% {content: "yo";}
+            70% {content: "you";}
+            71% {content: "your";}
+            72% {content: "your ";}
+            73% {content: "your t";}
+            74% {content: "your te";}
+            75% {content: "your tea";}
+            76% {content: "your team";}
+            100% {content: "your team";}
+        }
 
 /* The three explanation steps */
     .explanation-step {
@@ -301,6 +308,157 @@
             2%, 16.67% { opacity: 1; }
             16.68%, 100% { opacity: 0; }
         }
+
+/* A climate action so easy, you can DIY */
+    .how-section-title {
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: center;
+        text-align: center;
+        height: 20vh;
+        padding: 15px;
+        gap: 15px;
+    }
+    .how-emissions {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 40vh;
+        gap: 5vw;
+    }
+    .how-emissions-image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 400px;
+    }
+    .how-emissions-image img {
+        width: 400px;
+        position: absolute;
+    }
+    .how-emissions-text {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+    }
+    @media only screen and (max-width: 900px) {
+        .how-emissions {
+            flex-direction: column;
+            gap: 2vw;
+            padding: 15px;
+        }
+        .how-emissions-image {
+            width: auto;
+            height: 170px;
+        }
+        .how-emissions-image img {
+            width: auto;
+            height: 170px;
+        }
+    }
+
+    .img-emissions-smoke {
+        opacity: 1;
+        animation: image-cycle-emissions-smoke 6s infinite;
+    }
+    @keyframes image-cycle-emissions-smoke {
+        0%, 30% { opacity: 1; }
+        55%, 100% { opacity: 0; }
+    }
+    .img-emissions-permits {
+        opacity: 1;
+        animation: image-cycle-emissions-permits 6s infinite;
+    }
+    @keyframes image-cycle-emissions-permits {
+        0%, 30% { opacity: 1; }
+        31%, 100% { opacity: 0; }
+    }
+    .img-emissions-mountain {
+        opacity: 0;
+        animation: image-cycle-emissions-mountain 6s infinite;
+    }
+    @keyframes image-cycle-emissions-mountain {
+        0%, 30% { opacity: 0; }
+        40%, 100% { opacity: 1; }
+    }
+
+/* crypto */
+    .how-section-title {
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: center;
+        text-align: center;
+        height: 20vh;
+        padding: 15px;
+        gap: 15px;
+    }
+    .how-crypto {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 70vh;
+        gap: 5vw;
+        margin-bottom: 20vh;
+    }
+    .how-crypto-image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 400px;
+    }
+    .how-crypto-image img {
+        width: 400px;
+        position: absolute;
+    }
+    .how-crypto-text {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        width: 450px;
+    }
+    @media only screen and (max-width: 900px) {
+        .how-crypto {
+            flex-direction: column;
+            gap: 2vw;
+            padding: 15px;
+        }
+        .how-crypto-image {
+            width: auto;
+            height: 170px;
+        }
+        .how-crypto-image img {
+            width: auto;
+            height: 170px;
+        }
+    }
+
+    .img-emissions-smoke {
+        opacity: 1;
+        animation: image-cycle-emissions-smoke 6s infinite;
+    }
+    @keyframes image-cycle-emissions-smoke {
+        0%, 30% { opacity: 1; }
+        55%, 100% { opacity: 0; }
+    }
+    .img-emissions-permits {
+        opacity: 1;
+        animation: image-cycle-emissions-permits 6s infinite;
+    }
+    @keyframes image-cycle-emissions-permits {
+        0%, 30% { opacity: 1; }
+        31%, 100% { opacity: 0; }
+    }
+    .img-emissions-mountain {
+        opacity: 0;
+        animation: image-cycle-emissions-mountain 6s infinite;
+    }
+    @keyframes image-cycle-emissions-mountain {
+        0%, 30% { opacity: 0; }
+        40%, 100% { opacity: 1; }
+    }
+
 
 /* Haiku */
     .haiku-image {
