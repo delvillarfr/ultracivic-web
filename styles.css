@@ -133,7 +133,9 @@
 
   /* Enter key */
     .enter {
-      height: 1em;
+      height: 1.5em;
+      position: relative;
+      top: 0.4em;
     }
 
   /* Animation */
