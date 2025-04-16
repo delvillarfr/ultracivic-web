@@ -44,37 +44,31 @@
     font-family: "CantedComic Regular";
     font-weight: 599; /* Light version */
   }
-  .h1-specs { font-size: 2.5rem; }
-  .h2-specs { font-size: 2rem; }
-  .h3-specs { font-size: 1.3rem; }
-  .h4-specs { font-size: 1.5rem; }
+  .h1-specs { font-size: 3rem; }
+  .h2-specs { font-size: 2.5rem; }
+  .h3-specs { font-size: 1.8rem; }
+  .h4-specs { font-size: 1.3rem; }
   .navbar-font-specs { font-size: 1.2rem; }
   .text-specs { font-size: 1.1rem; }
   .footer-specs { font-size: 1rem; }
-  .faqtext-specs { font-size: 1.2rem; }
   @media only screen and (max-width: 975px) {
     .h1-specs { font-size: 2.5rem; }
     .h2-specs { font-size: 2rem; }
-    .h3-specs { font-size: 1.3rem; }
-    .h4-specs { font-size: 1.3rem; }
+    .h3-specs { font-size: 1.5rem; }
+    .h4-specs { font-size: 1.2rem; }
   }
   @media only screen and (max-width: 625px) {
     .h1-specs { font-size: 2rem; }
     .h2-specs { font-size: 1.5rem; }
-    .h3-specs { font-size: 1rem; }
+    .h3-specs { font-size: 1.3rem; }
+    .h4-specs { font-size: 1.1rem; }
     .navbar-font-specs { font-size: 1rem; }
-    .faqtext-specs { font-size: 1.1rem; }
   }
-  @media only screen and (max-width: 480px) {
+  @media only screen and (max-width: 400px) {
     .h1-specs { font-size: 1.5rem; }
-    .h2-specs { font-size: 1.2rem; }
-    .h3-specs { font-size: 1rem; }
-    .faqtext-specs { font-size: 1rem; }
-  }
-  @media only screen and (max-width: 374px) {
-    .h1-specs { font-size: 1.5rem; }
-    .h2-specs { font-size: 1.2rem; }
-    .h3-specs { font-size: 1rem; }
+    .h2-specs { font-size: 1.3rem; }
+    .h3-specs { font-size: 1.1rem; }
+    .h4-specs { font-size: 1rem; }
   }
 
 /* Navigation bar */
@@ -139,10 +133,7 @@
 
   /* Enter key */
     .enter {
-      height: 1.2rem;
-    }
-    @media only screen and (max-width: 565px) {
-      .enter { height: 1rem; }
+      height: 1em;
     }
 
   /* Animation */
@@ -224,12 +215,12 @@
   /* Step 1 */
     .img-step1 {
       opacity: 0;
-      animation: image-cycle-step-one 12s infinite;
+      animation: image-cycle-step-one 8s infinite;
       animation-delay: 3s;
     }
     @keyframes image-cycle-step-one {
-      0%, 12.5% { opacity: 0; }
-      16.67%, 100% { opacity: 1; }
+      0%, 25% { opacity: 0; }
+      30%, 100% { opacity: 1; }
     }
 
   /* Step 2 */
@@ -354,6 +345,7 @@
     .how-emissions {
       flex-direction: column;
       height: 350px;
+      padding: 0px;
     }
     .how-emissions-image {
       width: auto;
@@ -363,13 +355,15 @@
       width: auto;
       height: 170px;
     }
+    .how-emissions-text {
+      width: 100vw;
+      max-width: 750px;
+      padding: 25px;
+    }
   }
   @media only screen and (max-width: 400px) {
-    .how-emissions {
-      padding: 15px;
-    }
     .how-emissions-text {
-      width: 16em;
+      padding: 15px;
     }
     .how-emissions-image {
       height: 150px;
@@ -404,6 +398,42 @@
     40%, 100% { opacity: 1; }
   }
 
+/* Permit Prices */
+  .how-prices-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+  }
+  .how-prices-header-text {
+    width: 100vw;
+    max-width: 750px;
+  }
+  .how-prices {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: min(200px, 20vw);
+    padding: 25px;
+  }
+  .how-prices-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+  }
+
+  @media only screen and (max-width: 400px) {
+    .how-prices-header {
+      padding: 15px;
+    }
+    .how-prices {
+      padding: 15px;
+    }
+  }
+
+
 /* Crypto */
   .how-crypto {
     display: flex;
@@ -434,7 +464,8 @@
     .how-crypto {
       flex-direction: column;
       gap: 2em;
-      height: 560px;
+      height: 450px;
+      padding: 0px;
     }
     .how-crypto-image {
       width: auto;
@@ -444,13 +475,18 @@
       width: auto;
       height: 170px;
     }
+    .how-crypto-text {
+      width: 100vw;
+      max-width: 750px;
+      padding: 25px;
+    }
   }
   @media only screen and (max-width: 400px) {
     .how-crypto {
       padding: 15px;
     }
     .how-crypto-text {
-      width: 16em;
+      padding: 15px;
     }
     .how-crypto-image {
       height: 150px;
