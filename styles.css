@@ -473,7 +473,7 @@
     animation: image-cycle-crypto-permit-first 9s infinite;
   }
   @keyframes image-cycle-crypto-permit-first {
-    0%, 10% { opacity: 1; }
+    0%, 7.5% { opacity: 1; }
     15%, 100% { opacity: 0; }
   }
   .img-crypto-permit2 {
@@ -481,8 +481,8 @@
     animation: image-cycle-crypto-permit-second 9s infinite;
   }
   @keyframes image-cycle-crypto-permit-second {
-    0%, 10% { opacity: 0; }
-    15%, 25% { opacity: 1; }
+    0%, 7.5% { opacity: 0; }
+    15%, 22.5% { opacity: 1; }
     30%, 100% { opacity: 0; }
   }
   .img-crypto-permit3 {
@@ -490,8 +490,8 @@
     animation: image-cycle-crypto-permit-third 9s infinite;
   }
   @keyframes image-cycle-crypto-permit-third {
-    0%, 25% { opacity: 0; }
-    30%, 40% { opacity: 1; }
+    0%, 22.5% { opacity: 0; }
+    30%, 37.5% { opacity: 1; }
     45%, 100% { opacity: 0; }
   }
   .img-crypto-hole {
@@ -611,7 +611,7 @@
   .footer {
     display: flex;
     flex-direction: column;
-    padding: 30px;
+    padding: 25px;
     justify-content: start;
     background-color: rgb(30,30,30);
     color: rgb(220,220,220);
@@ -619,6 +619,11 @@
   .footer-logo {
     height: 1.3rem;
     margin-bottom: 1rem;
+  }
+  @media only screen and (max-width: 450px) {
+    .footer {
+      padding: 10px;
+    }
   }
 
 
