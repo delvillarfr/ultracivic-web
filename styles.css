@@ -49,7 +49,7 @@
   .h3-specs { font-size: 1.3rem; }
   .h4-specs { font-size: 1.5rem; }
   .navbar-font-specs { font-size: 1.2rem; }
-  .text-specs { font-size: 1.1rem; }
+  .text-specs { font-size: 1rem; }
   .faqtext-specs { font-size: 1.2rem; }
   @media only screen and (max-width: 975px) {
     .h1-specs { font-size: 2.5rem; }
@@ -564,7 +564,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    height: 60vh;
+    height: 500px;
   }
   .portrait-pic img {
     width: 400px;
@@ -574,8 +574,8 @@
     flex-direction: column;
     justify-content: start center;
     align-items: center;
-    height: 40vh;
-    gap: 3rem;
+    height: 20em;
+    gap: 3em;
     padding: 30px;
   }
   .bio-text {
@@ -583,18 +583,18 @@
   }
   @media only screen and (max-width: 625px) {
     .portrait-pic {
-      height: 40vh;
+      height: 350px;
     }
     .portrait-pic img {
       width: 300px;
     }
-    .bio {
-      height: 60vh;
-    }
   }
   @media only screen and (max-width: 450px) {
+    .bio {
+      padding: 10px;
+    }
     .bio-text {
-      width: 15em;
+      width: 18em;
     }
     .portrait-pic img {
       width: 250px;
