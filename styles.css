@@ -5,7 +5,7 @@
   box-sizing: border-box;
 }
 
-/* Default body */
+/* Core and frequently used classes */
   body {
     background-color: rgb(235,235,235);
     color: rgb(30,30,30);
@@ -15,6 +15,44 @@
     body {
       background-color: rgb(235,235,235);
       color: rgb(30,30,30);
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .link-style{
+    border-style: none;
+    cursor: pointer;
+    background-color: rgb(235,235,235);
+    font-family: "Atkinson Hyperlegible Next";
+    color: rgb(23, 23, 130); 
+    display: inline-block;
+  }
+  .how-section-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 25px;
+    gap: 15px;
+    margin-top: 8em;
+  }
+  .left-aligned-text {
+    padding: 25px;
+    width: 100vw;
+    max-width: 750px;
+    margin: auto;
+  }
+
+  @media only screen and (max-width: 400px) {
+    .how-section-title {
+      padding: 15px;
+    }
+    .left-aligned-text {
+      padding: 15px;
     }
   }
 
@@ -109,10 +147,21 @@
 
 /* Footer */
   .footer {
-    color: rgb(250,250,250);
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    justify-content: start;
     background-color: rgb(30,30,30);
-    display: grid;
-    grid-column: 1/5;
+    color: rgb(220,220,220);
+  }
+  .footer-logo {
+    height: 1.3rem;
+    margin-bottom: 1rem;
+  }
+  @media only screen and (max-width: 450px) {
+    .footer {
+      padding: 10px;
+    }
   }
 
 /* Intro */
@@ -223,8 +272,8 @@
   /* Step 1 */
     .img-step1 {
       opacity: 0;
-      animation: image-cycle-step-one 8s infinite;
-      animation-delay: 3s;
+      animation: image-cycle-step-one 4s infinite;
+      animation-delay: 2s;
     }
     @keyframes image-cycle-step-one {
       0%, 25% { opacity: 0; }
@@ -234,7 +283,7 @@
   /* Step 2 */
     .img-step2-smoke {
       opacity: 0;
-      animation: image-cycle-smoke 12s infinite;
+      animation: image-cycle-smoke 6s infinite;
     }
     @keyframes image-cycle-smoke {
       16.67%, 66.67% { opacity: 0; }
@@ -242,7 +291,7 @@
     }
     .img-step2-premise {
       opacity: 0;
-      animation: image-cycle-premise 12s infinite;
+      animation: image-cycle-premise 6s infinite;
     }
     @keyframes image-cycle-premise {
       12.5% { opacity: 0; }
@@ -250,7 +299,7 @@
     }
     .img-step2-servers {
       opacity: 0;
-      animation: image-cycle-servers 12s infinite;
+      animation: image-cycle-servers 6s infinite;
     }
     @keyframes image-cycle-servers {
       16.66% { opacity: 0; }
@@ -258,7 +307,7 @@
     }
     .img-step2-punchline {
       opacity: 0;
-      animation: image-cycle-punchline 12s infinite;
+      animation: image-cycle-punchline 6s infinite;
     }
     @keyframes image-cycle-punchline {
       45.83% { opacity: 0; }
@@ -268,37 +317,37 @@
   /* Lights in step 2 */
     .img-lights1 {
       opacity: 1;
-      animation: image-cycle-lights 12s infinite;
+      animation: image-cycle-lights 6s infinite;
     }
     .img-lights2 {
       opacity: 0;
-      animation: image-cycle-lights 12s infinite;
-      animation-delay: 2s;
+      animation: image-cycle-lights 6s infinite;
+      animation-delay: 1s;
     }
     .img-lights3 {
       opacity: 0;
-      animation: image-cycle-lights 12s infinite;
-      animation-delay: 2s;
+      animation: image-cycle-lights 6s infinite;
+      animation-delay: 1s;
     }
     .img-lights4 {
       opacity: 0;
-      animation: image-cycle-lights 12s infinite;
-      animation-delay: 4s;
+      animation: image-cycle-lights 6s infinite;
+      animation-delay: 2s;
     }
     .img-lights5 {
       opacity: 0;
-      animation: image-cycle-lights 12s infinite;
-      animation-delay: 6s;
+      animation: image-cycle-lights 6s infinite;
+      animation-delay: 3s;
     }
     .img-lights6 {
       opacity: 0;
-      animation: image-cycle-lights 12s infinite;
-      animation-delay: 8s;
+      animation: image-cycle-lights 6s infinite;
+      animation-delay: 4s;
     }
     .img-lights7 {
       opacity: 0;
-      animation: image-cycle-lights-last 12s infinite;
-      animation-delay: 10s;
+      animation: image-cycle-lights-last 6s infinite;
+      animation-delay: 5s;
     }
     @keyframes image-cycle-lights {
       2%, 16.67% { opacity: 1; }
@@ -309,81 +358,48 @@
       16.68%, 100% { opacity: 0; }
     }
 
-.how-section-title {
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  align-items: center;
-  text-align: center;
-  height: 150px;
-  padding: 25px;
-  gap: 15px;
-}
-@media only screen and (max-width: 400px) {
-  .how-section-title {
-    padding: 15px;
-  }
-}
 /* A climate action so easy, you can DIY */
   .how-emissions {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: start;
     align-items: center;
-    height: 300px;
+    height: 350px;
     gap: 1em;
-    padding: 25px;
+    margin-bottom: 4em;
   }
   .how-emissions-image {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 400px;
+    width: auto;
+    height: 220px;
   }
   .how-emissions-image img {
-    width: 400px;
     position: absolute;
+    width: auto;
+    height: 220px;
   }
   .how-emissions-text {
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    width: 20em;
-  }
-  @media only screen and (max-width: 900px) {
-    .how-emissions {
-      flex-direction: column;
-      height: 350px;
-      padding: 0px;
-    }
-    .how-emissions-image {
-      width: auto;
-      height: 170px;
-    }
-    .how-emissions-image img {
-      width: auto;
-      height: 170px;
-    }
-    .how-emissions-text {
-      width: 100vw;
-      max-width: 750px;
-      padding: 25px;
-    }
+    padding: 25px;
+    width: 100vw;
+    max-width: 750px;
   }
   @media only screen and (max-width: 400px) {
     .how-emissions-text {
       padding: 15px;
     }
     .how-emissions-image {
-      height: 150px;
+      height: 170px;
     }
     .how-emissions-image img {
-      height: 150px;
+      height: 170px;
     }
   }
 
   .img-emissions-smoke {
     opacity: 1;
-    animation: image-cycle-emissions-smoke 6s infinite;
+    animation: image-cycle-emissions-smoke 4s infinite;
   }
   @keyframes image-cycle-emissions-smoke {
     0%, 30% { opacity: 1; }
@@ -391,7 +407,7 @@
   }
   .img-emissions-permits {
     opacity: 1;
-    animation: image-cycle-emissions-permits 6s infinite;
+    animation: image-cycle-emissions-permits 4s infinite;
   }
   @keyframes image-cycle-emissions-permits {
     0%, 30% { opacity: 1; }
@@ -399,11 +415,44 @@
   }
   .img-emissions-mountain {
     opacity: 0;
-    animation: image-cycle-emissions-mountain 6s infinite;
+    animation: image-cycle-emissions-mountain 4s infinite;
   }
   @keyframes image-cycle-emissions-mountain {
     0%, 30% { opacity: 0; }
     40%, 100% { opacity: 1; }
+  }
+
+/* Lightbox to show the Northeast */
+  .lightbox {
+    /* Default to hidden */
+    display: none;
+
+    /* Overlay entire screen */
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    margin-top: 75px;
+    padding: 50px 25px;
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  /* Unhide the lightbox when it's the target */
+  .lightbox:target {
+    display: block;
+  }
+
+  .lightbox div {
+    display: block;
+    background-image: url("media/northeast.svg");
+    width: 100%;
+    height: 350px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
   }
 
 /* Permit Prices */
@@ -412,6 +461,7 @@
     justify-content: center;
     align-items: center;
     padding: 25px;
+    margin-top: 2em;
   }
   .how-prices-header-text {
     width: 100vw;
@@ -441,56 +491,67 @@
     }
   }
 
-/* Crypto */
-  .how-crypto {
+/* Standalone text */
+  .standalone-text {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 400px;
+  }
+  .standalone-text div {
+    width: 100vw;
+    max-width: 855px;
     padding: 25px;
-    gap: 3em;
+  }
+  @media only screen and (max-width: 900px) {
+    .standalone-text div {
+      max-width: 750px;
+    }
+  }
+  @media only screen and (max-width: 400px) {
+    .standalone-text div {
+      padding: 15px;
+    }
+  }
+
+
+/* Crypto */
+  .how-crypto {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    height: 430px;
   }
   .how-crypto-image {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 400px;
+    width: auto;
+    height: 220px;
   }
   .how-crypto-image img {
-    width: 400px;
     position: absolute;
+    width: auto;
+    height: 220px;
   }
   .how-crypto-text {
     display: flex;
     flex-direction: column;
     gap: 1em;
-    width: 20em;
+    width: 100vw;
+    max-width: 750px;
+    padding: 25px;
   }
-  @media only screen and (max-width: 900px) {
-    .how-crypto {
-      flex-direction: column;
-      gap: 2em;
-      height: 450px;
-      padding: 0px;
-    }
+  @media only screen and (max-width: 600px) {
     .how-crypto-image {
-      width: auto;
-      height: 170px;
+      height: 200px;
     }
     .how-crypto-image img {
-      width: auto;
-      height: 170px;
-    }
-    .how-crypto-text {
-      width: 100vw;
-      max-width: 750px;
-      padding: 25px;
+      height: 200px;
     }
   }
   @media only screen and (max-width: 400px) {
-    .how-crypto {
-      padding: 15px;
-    }
     .how-crypto-text {
       padding: 15px;
     }
@@ -504,7 +565,7 @@
 
   .img-crypto-door {
     opacity: 1;
-    animation: image-cycle-crypto-door 9s infinite;
+    animation: image-cycle-crypto-door 4s infinite;
   }
   @keyframes image-cycle-crypto-door {
     0%, 55% { opacity: 1; }
@@ -512,7 +573,7 @@
   }
   .img-crypto-permit1 {
     opacity: 1;
-    animation: image-cycle-crypto-permit-first 9s infinite;
+    animation: image-cycle-crypto-permit-first 4s infinite;
   }
   @keyframes image-cycle-crypto-permit-first {
     0%, 7.5% { opacity: 1; }
@@ -520,7 +581,7 @@
   }
   .img-crypto-permit2 {
     opacity: 0;
-    animation: image-cycle-crypto-permit-second 9s infinite;
+    animation: image-cycle-crypto-permit-second 4s infinite;
   }
   @keyframes image-cycle-crypto-permit-second {
     0%, 7.5% { opacity: 0; }
@@ -529,7 +590,7 @@
   }
   .img-crypto-permit3 {
     opacity: 0;
-    animation: image-cycle-crypto-permit-third 9s infinite;
+    animation: image-cycle-crypto-permit-third 4s infinite;
   }
   @keyframes image-cycle-crypto-permit-third {
     0%, 22.5% { opacity: 0; }
@@ -538,7 +599,7 @@
   }
   .img-crypto-hole {
     opacity: 0;
-    animation: image-cycle-crypto-hole 9s infinite;
+    animation: image-cycle-crypto-hole 4s infinite;
   }
   @keyframes image-cycle-crypto-hole {
     0%, 60% { opacity: 0; }
@@ -546,43 +607,12 @@
   }
   .img-crypto-reward {
     opacity: 0;
-    animation: image-cycle-crypto-reward 9s infinite;
+    animation: image-cycle-crypto-reward 4s infinite;
   }
   @keyframes image-cycle-crypto-reward {
     0%, 65% { opacity: 0; }
     80%, 100% { opacity: 1; }
   }
-
-/* A climate impact that cuts through the noise */
-  .theorem {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 250px;
-    padding: 25px;
-  }
-  .theorem img {
-    width: 400px;
-    position: absolute;
-  }
-  @media only screen and (max-width: 625px) {
-    .theorem {
-      height: 150px;
-    }
-    .theorem img {
-      width: 300px;
-    }
-  }
-  @media only screen and (max-width: 400px) {
-    .theorem {
-      padding: 15px;
-    }
-    .theorem img {
-      width: 280px;
-    }
-  }
-  }
-
 
 /* Haiku */
   .haiku-image {
@@ -610,30 +640,80 @@
     }
   }
 
-/* Outro */
-  .outro-image {
+/* Warning */
+  .warning {
     display: flex;
     justify-content: center;
+    padding: 25px;
+    margin-top: 150px;
+  }
+  .warning img {
+    width: 600px;
+  }
+  @media only screen and (max-width: 975px) {
+    .warning img {
+      width: 400px;
+    }
+  }
+  @media only screen and (max-width: 450px) {
+    .warning {
+      padding: 15px;
+    }
+    .warning img {
+      width: 290px;
+    }
+  }
+
+/* Theorem and proof */
+  .theorem {
+    display: flex;
+    justify-content: center;
+    padding: 25px;
+    margin-top: 150px;
+  }
+  .theorem img {
+    width: 600px;
+  }
+  .theorem-proof {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    min-height: 50vh;
+    justify-content: center;
+    gap: 1.5em;
   }
-  .outro-image img {
-    height: 300px;
-    position: absolute;
+  .theorem-proof-title {
+    width: 100vw;
+    max-width: 750px;
   }
-  @media only screen and (max-width: 625px) {
-    .outro-image img {
-      height: 250px;
+  .theorem-proof-claim {
+    text-align: start;
+    width: 100vw;
+    max-width: 700px;
+  }
+  .theorem-proof-details {
+    width: 100vw;
+    max-width: 700px;
+  }
+  .theorem-proof-claim:hover {
+    cursor: pointer;
+  }
+  .theorem-proof-details {
+    display: none;
+    padding: 10px;
+    text-align: justify;
+  }
+
+  @media only screen and (max-width: 650px) {
+    .theorem img {
+      width: 400px;
     }
   }
-  @media only screen and (max-width: 480px) {
-    .outro-image img {
-      height: 200px;
+  @media only screen and (max-width: 450px) {
+    .theorem {
+      padding: 15px;
     }
-  }
-  @media only screen and (max-width: 345px) {
-    .outro-image img {
-      height: 150px;
+    .theorem img {
+      width: 290px;
     }
   }
 
@@ -677,25 +757,6 @@
     }
     .portrait-pic img {
       width: 250px;
-    }
-  }
-
-/* Footer */
-  .footer {
-    display: flex;
-    flex-direction: column;
-    padding: 25px;
-    justify-content: start;
-    background-color: rgb(30,30,30);
-    color: rgb(220,220,220);
-  }
-  .footer-logo {
-    height: 1.3rem;
-    margin-bottom: 1rem;
-  }
-  @media only screen and (max-width: 450px) {
-    .footer {
-      padding: 10px;
     }
   }
 

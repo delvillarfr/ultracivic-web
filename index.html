@@ -103,19 +103,26 @@
     </div>
   </div>
 
-  <div class="how-section-title atkinson">
+  <div class="how-section-title atkinson" id="simple-climate-action">
     <h2 class="h2-specs">
       A climate action so simple, you&nbsp;can&nbsp;DIY.
     </h2>
   </div>
   <div class="how-emissions atkinson text-specs">
-    <div class="how-emissions-text">
+    <div class="left-aligned-text">
       <div>
-        In the American northeast, power plants need a permit to emit a ton&nbsp;of&nbsp;carbon.
+        Coal, gas, and oil-fueled power plants in the
+        <!-- Lightbox thumbnail, visible on page at all times -->
+        <a href="#the-northeast" class="link-style" style="display: inline-block;">
+          Northeast
+        </a>
+        need a permit to emit a ton of carbon.
+        To stop one ton from exiting their chimneys, buy one permit and lock it away.
       </div>
-      <div>
-        To lower their emissions by <span class="atkinson-bold">exactly one ton</span>, buy one of their permits, and&nbsp;lock&nbsp;it&nbsp;away.
-      </div>
+      <!-- Include lightbox (position on page doesn't matter) -->
+      <a href="#simple-climate-action" class="lightbox" id="the-northeast">
+        <div></div>
+      </a>
     </div>
     <div class="how-emissions-image">
       <img src="media/emissions-base.svg" class="">
@@ -125,18 +132,19 @@
     </div>
   </div>
   
-  <div class="how-prices-header atkinson">
-    <h3 class="how-prices-header-text h3-specs">
-      To lock a permit away, you pay:
-    </h3>
+  <h3 class="left-aligned-text atkinson h3-specs">
+    So cheap, too.
+  </h3>
+  <div class="left-aligned-text atkinson text-specs">
+    To buy a permit and lock it away, you pay:
   </div>
   <div class="how-prices atkinson">
     <div class="how-prices-text">
-      <div class="h1-specs">
-            $30
-      </div>
+      <h1 class="h1-specs">
+            $29
+      </h1>
       <div class="h4-specs">
-            If we do it for you.
+            if we do it for you.
       </div>
     </div>
     <!--
@@ -145,18 +153,16 @@
     </div>
     -->
     <div class="how-prices-text">
-      <div class="how-prices-text-sticker h1-specs">
+      <h1 class="how-prices-text-sticker h1-specs">
             $20-26
-      </div>
+      </h1>
       <div class="how-prices-text-description h4-specs">
-            If you DIY.
+            if you DIY.
       </div>
     </div>
   </div>
-  <div class="how-prices-header atkinson">
-    <div class="how-prices-header-text text-specs">
-      That is <span class="atkinson-bold">5-34 times cheaper</span> than removing carbon&nbsp;from&nbsp;the&nbsp;air.
-    </div>
+  <div class="left-aligned-text atkinson text-specs">
+    That is <span class="atkinson-bold">5-45 times cheaper</span> than removing carbon&nbsp;from&nbsp;the&nbsp;air.
   </div>
 
   <div class="how-section-title atkinson">
@@ -171,13 +177,10 @@
       </div>
       <div>
         We mint 1.x coins if you lock a pollution permit away, or if we do it for you.
-        You get one coin.
+        You get 1 coin.
         We get 0.x coins.
         Right now, x = 2.
         We do not mint in any other event.
-      </div>
-      <div>
-        We stop minting if the market price of a pollution permit &mdash; 20-26 USD nowadays &mdash; exceeds 200 USD, the monetary equivalent of the damage to humanity of another ton of carbon in the atmosphere.
       </div>
     </div>
     <div class="how-crypto-image">
@@ -190,16 +193,59 @@
       <img src="media/crypto-reward.svg" class="img-crypto-reward">
     </div>
   </div>
+  <div class="left-aligned-text atkinson text-specs">
+    <div>
+      We stop minting when the market price of a pollution permit (20-26 USD nowadays) exceeds 200 USD &mdash; the damage to humanity of another ton of carbon in the atmosphere.
+    </div>
+  </div>
 
+  <!--
   <div class="how-section-title atkinson">
     <h2 class="h2-specs">
-      A climate impact that is all business.
-      <!--Permits and smog: anatomy of your climate impact.-->
+      To learn more, put on your safety gear, and follow the breadcrumbs.
+      Permits and smog: anatomy of your climate impact.A climate impact that is all business.
     </h2>
+  </div>
+  -->
+
+  <div class="warning">
+    <img src="media/warning.svg">
   </div>
 
   <div class="theorem">
     <img src="media/theorem.svg">
+  </div>
+
+  <div class="theorem-proof atkinson">
+    <h3 class="theorem-proof-title h3-specs">
+      Proof.
+    </h3>
+    <button class="theorem-proof-claim link-style h4-specs" onclick="toggleAnswer(this)">
+      A. Power plants' emissions are measured well.
+    </button>
+    <div class="theorem-proof-details text-specs">
+      Regulated power plants are those with a capacity of 25 megawatts or more.
+      Their emissions go into the atmosphere through smokestacks.
+      Inside each of these is a device that continuously measures the amount of carbon dioxide moving up and sends hourly data to the Environmental Protection Agency.
+    </div>
+    <button class="theorem-proof-claim link-style h4-specs" onclick="toggleAnswer(this)">
+      B. There is a fixed number of permits available to power plants.
+    </button>
+    <div class="theorem-proof-details text-specs">
+      tmp.
+    </div>
+    <button class="theorem-proof-claim link-style h4-specs" onclick="toggleAnswer(this)">
+      C. Power plants do not pollute without permits.
+    </button>
+    <div class="theorem-proof-details text-specs">
+      tmp.
+    </div>
+    <button class="theorem-proof-claim link-style h4-specs" onclick="toggleAnswer(this)">
+      D. Power plants use every available permit to pollute.
+    </button>
+    <div class="theorem-proof-details text-specs">
+        tmp.
+    </div>
   </div>
 
   <div class="footer atkinson footer-specs">
@@ -218,5 +264,6 @@
     <a href="https://www.iubenda.com/privacy-policy/40795206/cookie-policy" class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe " title="Cookie Policy ">Cookie Policy</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
     -->
   </div>
+  <script src="script.js"></script>
 </body>
 </html>
