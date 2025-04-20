@@ -121,7 +121,7 @@
       </div>
       <!-- Include lightbox (position on page doesn't matter) -->
       <a href="#simple-climate-action" class="lightbox" id="the-northeast">
-        <div></div>
+        <div class="lightbox-northeast"></div>
       </a>
     </div>
     <div class="how-emissions-image">
@@ -217,34 +217,162 @@
   </div>
 
   <div class="theorem-proof atkinson">
-    <h3 class="theorem-proof-title h3-specs">
+    <h3 class="theorem-proof-title h3-specs" id="theorem-proof">
       Proof.
     </h3>
-    <button class="theorem-proof-claim link-style h4-specs" onclick="toggleAnswer(this)">
+    <div class="theorem-proof-details text-specs">
+      <p>
+        Northeastern states know their power plants' emissions very well, and decided how many permits to issue many years ago.
+        Power plants always buy enough permits to cover their emissions, and plan to use every permit available to them to pollute.
+        When you buy and lock a permit away, you lower the number of permits available to power plants, and make them emit one less ton of carbon dioxide.
+      </p>
+      <p>
+        Time to dive into each of the claims we just made :)
+      </p>
+    </div>
+    <h4 class="theorem-proof-claim h4-specs">
       A. Power plants' emissions are measured well.
-    </button>
+    </h4>
     <div class="theorem-proof-details text-specs">
-      Regulated power plants are those with a capacity of 25 megawatts or more.
-      Their emissions go into the atmosphere through smokestacks.
-      Inside each of these is a device that continuously measures the amount of carbon dioxide moving up and sends hourly data to the Environmental Protection Agency.
+      <p>
+        The Environmental Protection Agency (EPA) monitors the hourly carbon emissions of coal, oil, and gas-fired power plants.
+        It requires them to install devices that continuously measure the carbon dioxide moving up inside their chimneys, or install fuel flow measuring systems to monitor how much they burn.
+        Coal power plants must install the devices in their chimneys.
+      </p>
+      <p>
+        To dig <span class="atkinson-italic">deep</span>, look at the monitoring and reporting section of the regulations of states in the Northeast:
+        <a href="https://eregulations.ct.gov/eRegsPortal/Browse/RCSA/Title_22aSubtitle_22a-174Section_22a-174-31/" target="_blank" class="link-style">
+          Connecticut
+        </a>
+        (p. 28),
+        <a href="https://eregulations.ct.gov/eRegsPortal/Browse/getDocument?guid={30CEAB6D-0000-CD6C-AEA7-B414E3B86746}" target="_blank" class="link-style">
+          Delaware
+        </a>
+        (p. 34),
+        <a href="https://www.law.cornell.edu/regulations/maine/06-096-C-M-R-ch-156-SS-4" target="_blank" class="link-style">
+          Maine
+        </a>,
+        <a href="https://www.law.cornell.edu/regulations/maryland/COMAR-26-09-02-10" target="_blank" class="link-style">
+          Maryland
+        </a>,
+        <a href="https://www.mass.gov/doc/310-cmr-700-air-pollution-control-regulation/download" target="_blank" class="link-style">
+          Massachusetts
+        </a>
+        (p.466),
+        <a href="https://www.nj.gov/dep/aqes/docs/njac7_27c.pdf" target="_blank" class="link-style">
+          New Jersey
+        </a>
+        (p.79),
+        <a href="https://www.des.nh.gov/sites/g/files/ehbemt341/files/documents/env-a4600-certified.pdf" target="_blank" class="link-style">
+          New Hampshire
+        </a>
+        (p.41),
+        <a href="https://www.law.cornell.edu/regulations/new-york/6-NYCRR-242-8.1" target="_blank" class="link-style">
+          New York
+        </a>,
+        <a href="https://rules.sos.ri.gov/regulations/part/250-120-05-46" target="_blank" class="link-style">
+          Rhode Island
+        </a>, and
+        <a href="https://dec.vermont.gov/sites/dec/files/aqc/laws-regs/documents/Vermont_CO2_Budget_Trading_Program_Rule_adopted_08292018.pdf" target="_blank" class="link-style">
+          Vermont
+        </a>
+        (p.50).
+        They build on the federal emissions reporting requirements listed in Part 75 of the Code of Federal Regulations.
+      </p>
     </div>
-    <button class="theorem-proof-claim link-style h4-specs" onclick="toggleAnswer(this)">
-      B. There is a fixed number of permits available to power plants.
-    </button>
+    <h4 class="theorem-proof-claim h4-specs">
+      B. There is a predetermined number of permits available to power plants.
+    </h4>
     <div class="theorem-proof-details text-specs">
-      tmp.
+      <p>
+        Back in 2017, the states decided how many new pollution permits to sell to power plants every year from 2020 to 2030.
+        They have issued permits according to plan, so they do not issue new ones on a whim, e.g., if they see that you bought one and locked it away.
+      </p>
+      <p>
+        Feeling <span class="atkinson-italic">mole-y</span>? Look at the planned permit issuances in the section on allowance allocations in each of the states' regulations: 
+        <a href="https://eregulations.ct.gov/eRegsPortal/Browse/getDocument?guid={30CEAB6D-0000-CD6C-AEA7-B414E3B86746}" target="_blank" class="link-style">
+          Connecticut
+        </a>
+        (p.16),
+        <a href="https://regulations.delaware.gov/AdminCode/title7/1000/1100/1147.pdf" target="_blank" class="link-style">
+          Delaware
+        </a>
+        (p. 19),
+        <a href="https://www.law.cornell.edu/regulations/maine/06-096-C-M-R-ch-156-SS-2" target="_blank" class="link-style">
+          Maine
+        </a>,
+        <a href="https://www.law.cornell.edu/regulations/maryland/COMAR-26-09-02-03" target="_blank" class="link-style">
+          Maryland
+        </a>,
+        <a href="https://www.mass.gov/doc/310-cmr-700-air-pollution-control-regulation/download" target="_blank" class="link-style">
+          Massachusetts
+        </a>
+         (p.455),
+        <a href="https://www.nj.gov/dep/aqes/docs/njac7_27c.pdf" target="_blank" class="link-style">
+          New Jersey
+        </a>
+        (p. 51),
+        <a href="https://www.des.nh.gov/sites/g/files/ehbemt341/files/documents/env-a4600-certified.pdf" target="_blank" class="link-style">
+          New Hampshire
+        </a>
+        (p. 29),
+        <a href="https://www.law.cornell.edu/regulations/new-york/6-NYCRR-242-5.1" target="_blank" class="link-style">
+          New York
+        </a>,
+        <a href="https://rules.sos.ri.gov/regulations/part/250-120-05-46" target="_blank" class="link-style">
+          Rhode Island
+        </a>, and
+        <a href="https://dec.vermont.gov/sites/dec/files/aqc/laws-regs/documents/Vermont_CO2_Budget_Trading_Program_Rule_adopted_08292018.pdf" target="_blank" class="link-style">
+          Vermont
+        </a>
+        (p. 32).
+        Compare them with the actual issuances, available 
+        <a href="https://www.rggi.org/allowance-tracking/allowance-distribution" target="_blank" class="link-style">
+          here
+        </a>.
+      </p>
     </div>
-    <button class="theorem-proof-claim link-style h4-specs" onclick="toggleAnswer(this)">
+    <h4 class="theorem-proof-claim h4-specs">
       C. Power plants do not pollute without permits.
-    </button>
+    </h4>
     <div class="theorem-proof-details text-specs">
-      tmp.
+      <p>
+        Every couple of years, power plants have to surrender to the states an amount of permits equal to the tons of carbon dioxide that they emitted.
+        If they do not, states make them buy three permits for every ton that they did not account for.
+        That is bad for power plants, so they buy enough permits to cover their emissions.
+      </p>
+      <p>
+        To see that power plants actually surrender the right number of permits, check out the data 
+        <a href="https://rggi-coats.org/eats/rggi/index.cfm?fuseaction=reportsv2.final_compliance_summary_rpt" target="_blank" class="link-style">
+          here
+        </a>: pick a source (i.e., power plant), pick a control period, get the report, and compare the total emissions with the total allowances deducted.
+      </p>
     </div>
-    <button class="theorem-proof-claim link-style h4-specs" onclick="toggleAnswer(this)">
+    <h4 class="theorem-proof-claim h4-specs">
       D. Power plants use every available permit to pollute.
-    </button>
+    </h4>
     <div class="theorem-proof-details text-specs">
-        tmp.
+      <p>
+        This one is an economics twister :)
+        Power plants pay top dollar for a permit, between $20 and $26 nowadays.
+        Permits are valuable to them only because they let them pollute.
+        If they were not going to use them for that purpose, they would be crazy to pay anything for them!
+        Since they are not crazy, they must plan to use every available permit.
+      </p>
+      <!--
+      <p>
+        Put differently, if power plants did not plan to use every available permit, they would not be willing to pay anything for some permits.
+        The market price for permits would then equal $0. But permits actually sell for over $20.
+        That contradiction indicates that power plants plan to use every available permit.
+      </p>
+      -->
+      <p>
+        New permits are sold during quarterly auctions.
+        You can check out historical auction prices
+        <a href="https://www.rggi.org/auctions/auction-results" target="_blank" class="link-style">
+          here
+        </a>.
+      </p>
     </div>
   </div>
 
@@ -266,4 +394,11 @@
   </div>
   <script src="script.js"></script>
 </body>
+<!--
+        Going further, we will see what happens to your climate impact when That said, it would be foolish to think that states are always going to be reliable.
+        They could all decide to issue permits willy-nilly; individual states might stop requiring pollution permits altogether.
+        , would be reliable forever.
+        If became unreliable sometime in the future, we would have to imagine various scenarios to think about the climate impact you have when you buy and lock permits away today.
+        Going further, we will see what happens to your climate impact of buying and locking permits away if states become unreliable. In short, 
+-->
 </html>

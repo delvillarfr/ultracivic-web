@@ -55,12 +55,29 @@
       padding: 15px;
     }
   }
+  .lightbox {
+    /* Default to hidden */
+    display: none;
+
+    /* Overlay entire screen */
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    margin-top: 75px;
+    padding: 50px 25px;
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  /* Unhide the lightbox when it's the target */
+  .lightbox:target {
+    display: block;
+  }
 
 /* Fonts */
-  @font-face {
-    font-family: 'Atkinson Hyperlegible Regular';
-    src: url('./fonts/Atkinson-Hyperlegible-Regular-102.otf') format('truetype');
-  }
   @font-face {
     font-family: 'Atkinson Hyperlegible Next';
     src: url('./fonts/AtkinsonHyperlegibleNext-Regular.otf');
@@ -68,6 +85,10 @@
   @font-face {
     font-family: 'Atkinson Hyperlegible Next Bold';
     src: url('./fonts/AtkinsonHyperlegibleNext-Bold.otf');
+  }
+  @font-face {
+    font-family: 'Atkinson Hyperlegible Next Italic';
+    src: url('./fonts/AtkinsonHyperlegibleNext-RegularItalic.otf');
   }
   @font-face {
     font-family: 'CantedComic Regular';
@@ -78,6 +99,9 @@
   }
   .atkinson-bold {
     font-family: "Atkinson Hyperlegible Next Bold";
+  }
+  .atkinson-italic {
+    font-family: "Atkinson Hyperlegible Next Italic";
   }
   .canted {
     font-family: "CantedComic Regular";
@@ -153,6 +177,7 @@
     justify-content: start;
     background-color: rgb(30,30,30);
     color: rgb(220,220,220);
+    margin-top: 5em;
   }
   .footer-logo {
     height: 1.3rem;
@@ -423,29 +448,7 @@
   }
 
 /* Lightbox to show the Northeast */
-  .lightbox {
-    /* Default to hidden */
-    display: none;
-
-    /* Overlay entire screen */
-    position: fixed;
-    z-index: 99;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-
-    margin-top: 75px;
-    padding: 50px 25px;
-    background: rgba(0, 0, 0, 0.8);
-  }
-
-  /* Unhide the lightbox when it's the target */
-  .lightbox:target {
-    display: block;
-  }
-
-  .lightbox div {
+  .lightbox-northeast {
     display: block;
     background-image: url("media/northeast.svg");
     width: 100%;
@@ -679,28 +682,30 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1.5em;
+    gap: 1em;
   }
   .theorem-proof-title {
     width: 100vw;
     max-width: 750px;
+    padding: 0px 25px;
   }
   .theorem-proof-claim {
     text-align: start;
     width: 100vw;
-    max-width: 700px;
-  }
-  .theorem-proof-details {
-    width: 100vw;
-    max-width: 700px;
+    max-width: 750px;
+    padding: 0px 25px;
+    margin-top: 1em;
   }
   .theorem-proof-claim:hover {
     cursor: pointer;
   }
   .theorem-proof-details {
-    display: none;
-    padding: 10px;
-    text-align: justify;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 100vw;
+    max-width: 750px;
+    padding: 0px 25px;
   }
 
   @media only screen and (max-width: 650px) {
