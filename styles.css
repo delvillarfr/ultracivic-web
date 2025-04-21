@@ -77,6 +77,10 @@
     display: block;
   }
 
+  .vspace {
+    height: 75px;
+  }
+
 /* Fonts */
   @font-face {
     font-family: 'Atkinson Hyperlegible Next';
@@ -105,7 +109,6 @@
   }
   .canted {
     font-family: "CantedComic Regular";
-    font-weight: 599; /* Light version */
   }
   .h1-specs { font-size: 3rem; }
   .h2-specs { font-size: 2.5rem; }
@@ -131,7 +134,7 @@
     .h1-specs { font-size: 1.5rem; }
     .h2-specs { font-size: 1.3rem; }
     .h3-specs { font-size: 1.1rem; }
-    .h4-specs { font-size: 1rem; }
+    .h4-specs { font-size: 1.1rem; }
   }
 
 /* Navigation bar */
@@ -220,7 +223,7 @@
 
   /* Animation */
     .words::before {
-      animation: words 13s infinite;
+      animation: words 6s infinite;
       content: "";
       width: 5em;
       display: inline-block; 
@@ -391,7 +394,6 @@
     align-items: center;
     height: 350px;
     gap: 1em;
-    margin-bottom: 4em;
   }
   .how-emissions-image {
     display: flex;
@@ -459,39 +461,116 @@
   }
 
 /* Permit Prices */
-  .how-prices-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 25px;
-    margin-top: 2em;
-  }
-  .how-prices-header-text {
-    width: 100vw;
-    max-width: 750px;
-  }
   .how-prices {
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: center;
-    gap: min(200px, 20vw);
-    padding: 25px;
+    gap: min(200px, 18vw);
+    padding: 0px 25px;
   }
   .how-prices-text {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    text-align: center;
     gap: 1em;
   }
 
   @media only screen and (max-width: 400px) {
-    .how-prices-header {
-      padding: 15px;
-    }
     .how-prices {
-      padding: 15px;
+      padding: 0 15px;
     }
+  }
+
+/* DIY steps */
+  .diy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+  .diy-step {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+    width: 100vw;
+    max-width: 750px;
+    height: 150px;
+  }
+  .diy-step-text {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px 25px;
+    text-align: start;
+    width: 500px;
+  }
+  .diy-step-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 250px;
+  }
+  .diy-step-image img {
+    height: 150px;
+    position: absolute;
+  }
+  @media only screen and (max-width: 900px) {
+    .diy-step {
+      flex-direction: column;
+      gap: 20px;
+      height: auto;
+    }
+    .diy-step-text {
+      width: 100vw;
+      max-width: 750px;
+    }
+    .diy-step-image {
+      height: 150px;
+    }
+    .diy-step-image img {
+      height: 150px;
+    }
+  }
+  @media only screen and (max-width: 400px) {
+    .diy-step-text {
+      padding: 10px 15px;
+    }
+  }
+
+  .img-diy-door {
+    opacity: 1;
+    animation: image-cycle-diy-door 2s infinite;
+  }
+  @keyframes image-cycle-diy-door {
+    0%, 100% { opacity: 1; }
+  }
+  .img-diy-allowance1 {
+    opacity: 1;
+    animation: image-cycle-diy-allowance-first 2s infinite;
+  }
+  @keyframes image-cycle-diy-allowance-first {
+    0%, 20% { opacity: 1; }
+    30%, 100% { opacity: 0; }
+  }
+  .img-diy-allowance2 {
+    opacity: 0;
+    animation: image-cycle-diy-allowance-second 2s infinite;
+  }
+  @keyframes image-cycle-diy-allowance-second {
+    0%, 20% { opacity: 0; }
+    30%, 45% { opacity: 1; }
+    55%, 100% { opacity: 0; }
+  }
+  .img-diy-allowance3 {
+    opacity: 0;
+    animation: image-cycle-diy-allowance-third 2s infinite;
+  }
+  @keyframes image-cycle-diy-allowance-third {
+    0%, 45% { opacity: 0; }
+    55%, 70% { opacity: 1; }
+    80%, 100% { opacity: 0; }
   }
 
 /* Standalone text */
@@ -574,28 +653,28 @@
     0%, 55% { opacity: 1; }
     56%, 100% { opacity: 0; }
   }
-  .img-crypto-permit1 {
+  .img-crypto-allowance1 {
     opacity: 1;
-    animation: image-cycle-crypto-permit-first 4s infinite;
+    animation: image-cycle-crypto-allowance-first 4s infinite;
   }
-  @keyframes image-cycle-crypto-permit-first {
+  @keyframes image-cycle-crypto-allowance-first {
     0%, 7.5% { opacity: 1; }
     15%, 100% { opacity: 0; }
   }
-  .img-crypto-permit2 {
+  .img-crypto-allowance2 {
     opacity: 0;
-    animation: image-cycle-crypto-permit-second 4s infinite;
+    animation: image-cycle-crypto-allowance-second 4s infinite;
   }
-  @keyframes image-cycle-crypto-permit-second {
+  @keyframes image-cycle-crypto-allowance-second {
     0%, 7.5% { opacity: 0; }
     15%, 22.5% { opacity: 1; }
     30%, 100% { opacity: 0; }
   }
-  .img-crypto-permit3 {
+  .img-crypto-allowance3 {
     opacity: 0;
-    animation: image-cycle-crypto-permit-third 4s infinite;
+    animation: image-cycle-crypto-allowance-third 4s infinite;
   }
-  @keyframes image-cycle-crypto-permit-third {
+  @keyframes image-cycle-crypto-allowance-third {
     0%, 22.5% { opacity: 0; }
     30%, 37.5% { opacity: 1; }
     45%, 100% { opacity: 0; }
