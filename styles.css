@@ -78,7 +78,7 @@
   }
 
   .vspace {
-    height: 75px;
+    height: 40px;
   }
 
 /* Fonts */
@@ -465,7 +465,7 @@
     display: flex;
     align-items: start;
     justify-content: center;
-    gap: min(200px, 18vw);
+    gap: min(200px, 9vw);
     padding: 0px 25px;
   }
   .how-prices-text {
@@ -474,6 +474,13 @@
     align-items: center;
     text-align: center;
     gap: 1em;
+    width: 220px;
+  }
+
+  @media only screen and (max-width: 500px) {
+    .how-prices-text {
+      width: 150px;
+    }
   }
 
   @media only screen and (max-width: 400px) {
@@ -799,6 +806,15 @@
     .theorem img {
       width: 290px;
     }
+  }
+
+/* Questions */
+  .link-questions{
+    border-style: none;
+    cursor: pointer;
+    background-color: rgb(235,235,235);
+    color: rgb(30,30,30);
+    display: inline-block;
   }
 
 /* About */
