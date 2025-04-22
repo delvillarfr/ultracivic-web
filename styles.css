@@ -808,6 +808,39 @@
     }
   }
 
+/* -----------------------Questions------------------------- */ 
+
+/* Greeting */
+  .greeting {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0px 0px 0px;
+    gap: 30px;
+  }
+  .greeting-text {
+  }
+  .greeting-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .greeting-image img {
+    height: 200px;
+  }
+  @media only screen and (max-width: 625px) {
+    .greeting {
+      margin: 30px 0px 0px 0px;
+  }
+    .greeting-image {
+      height: 150px;
+    }
+    .greeting-image img {
+      height: 150px;
+    }
+  }
+
 /* Questions */
   .link-questions{
     border-style: none;
