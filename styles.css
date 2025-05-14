@@ -33,6 +33,7 @@
   .how-section-title {
     display: flex;
     justify-content: center;
+    text-align: center;
     padding: 25px;
     margin-top: 8em;
   }
@@ -397,7 +398,7 @@
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    height: 350px;
+    height: 450px;
     gap: 1em;
   }
   .how-emissions-image {
@@ -470,8 +471,8 @@
     display: flex;
     align-items: start;
     justify-content: center;
-    gap: min(200px, 9vw);
-    padding: 0px 25px;
+    gap: min(20px, 2vw);
+    padding: 5px 25px;
   }
   .how-prices-text {
     display: flex;
@@ -615,7 +616,7 @@
     justify-content: center;
     align-items: center;
     gap: 2em;
-    height: 430px;
+    height: 400px;
   }
   .how-crypto-image {
     display: flex;
