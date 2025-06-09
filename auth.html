@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ultra Civic - Authentication</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="shortcut icon" href="media/browser-icon.svg" type="image/x-icon">
+  <style>
+    .auth-container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .auth-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .form-group label {
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: rgb(30,30,30);
+    }
+    
+    .form-group input {
+      padding: 10px;
+      border: 2px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+      font-family: "Atkinson Hyperlegible Next";
+    }
+    
+    .form-group input:focus {
+      outline: none;
+      border-color: rgb(23, 23, 130);
+    }
+    
+    .auth-button {
+      padding: 12px 20px;
+      background-color: rgb(23, 23, 130);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      font-family: "Atkinson Hyperlegible Next";
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .auth-button:hover {
+      background-color: rgb(18, 18, 100);
+    }
+    
+    .auth-button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+    
+    .error-message {
+      color: #d32f2f;
+      background-color: #ffebee;
+      padding: 10px;
+      border-radius: 4px;
+      margin-bottom: 15px;
+    }
+    
+    .success-message {
+      color: #2e7d32;
+      background-color: #e8f5e8;
+      padding: 10px;
+      border-radius: 4px;
+      margin-bottom: 15px;
+    }
+    
+    .toggle-form {
+      text-align: center;
+      margin-top: 20px;
+    }
+    
+    .toggle-form button {
+      background: none;
+      border: none;
+      color: rgb(23, 23, 130);
+      cursor: pointer;
+      text-decoration: underline;
+      font-family: "Atkinson Hyperlegible Next";
+    }
+    
+    .kyc-section {
+      text-align: center;
+      padding: 20px;
+    }
+    
+    .verify-button {
+      padding: 15px 30px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 18px;
+      font-family: "Atkinson Hyperlegible Next";
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .verify-button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar atkinson navbar-font-specs">
+    <a class="navlink" href="index.html"><img class="navlink-logo" src="media/logo.svg"></a>
+    <a class="navlink" href="questions.html">Questions</a>
+    <a class="navlink" href="about.html">Who we are</a>
+  </div>
+
+  <div class="auth-container atkinson">
+    <div id="auth-section">
+      <h2 id="form-title">Sign Up for Ultra Civic</h2>
+      
+      <div id="error-display" class="error-message" style="display: none;"></div>
+      <div id="success-display" class="success-message" style="display: none;"></div>
+      
+      <form id="auth-form" class="auth-form">
+        <div class="form-group" id="name-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required>
+          <small>Must be at least 8 characters with 1+ digit</small>
+        </div>
+        
+        <div class="form-group" id="password-confirm-group">
+          <label for="password-confirm">Confirm Password</label>
+          <input type="password" id="password-confirm" name="password-confirm" required>
+        </div>
+        
+        <button type="submit" class="auth-button" id="submit-button">
+          Sign Up
+        </button>
+      </form>
+      
+      <div class="toggle-form">
+        <p>Already have an account? 
+          <button type="button" id="toggle-mode">Sign In</button>
+        </p>
+      </div>
+    </div>
+
+    <div id="kyc-section" class="kyc-section" style="display: none;">
+      <h2>Welcome to Ultra Civic!</h2>
+      <p>Your account has been created successfully. To access all features, please verify your identity.</p>
+      <br>
+      <button id="verify-button" class="verify-button">
+        Verify Identity
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Use production API on ultracivic.com, otherwise use localhost
+    const API_BASE = window.location.hostname === 'ultracivic.com' 
+      ? 'https://ultracivic-backend.onrender.com' 
+      : 'http://localhost:8000';
+    let isSignUpMode = true;
+
+    // DOM elements
+    const authSection = document.getElementById('auth-section');
+    const kycSection = document.getElementById('kyc-section');
+    const formTitle = document.getElementById('form-title');
+    const authForm = document.getElementById('auth-form');
+    const nameGroup = document.getElementById('name-group');
+    const passwordConfirmGroup = document.getElementById('password-confirm-group');
+    const submitButton = document.getElementById('submit-button');
+    const toggleButton = document.getElementById('toggle-mode');
+    const errorDisplay = document.getElementById('error-display');
+    const successDisplay = document.getElementById('success-display');
+    const verifyButton = document.getElementById('verify-button');
+
+    // Toggle between sign up and sign in modes
+    toggleButton.addEventListener('click', () => {
+      isSignUpMode = !isSignUpMode;
+      
+      if (isSignUpMode) {
+        formTitle.textContent = 'Sign Up for Ultra Civic';
+        submitButton.textContent = 'Sign Up';
+        toggleButton.textContent = 'Sign In';
+        nameGroup.style.display = 'flex';
+        passwordConfirmGroup.style.display = 'flex';
+        toggleButton.parentElement.innerHTML = 'Already have an account? <button type="button" id="toggle-mode">Sign In</button>';
+      } else {
+        formTitle.textContent = 'Sign In to Ultra Civic';
+        submitButton.textContent = 'Sign In';
+        toggleButton.textContent = 'Sign Up';
+        nameGroup.style.display = 'none';
+        passwordConfirmGroup.style.display = 'none';
+        toggleButton.parentElement.innerHTML = 'Don\'t have an account? <button type="button" id="toggle-mode">Sign Up</button>';
+      }
+      
+      // Re-attach event listener to new toggle button
+      document.getElementById('toggle-mode').addEventListener('click', arguments.callee);
+      clearMessages();
+    });
+
+    // Form submission handler
+    authForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      
+      if (isSignUpMode) {
+        const name = document.getElementById('name').value;
+        const passwordConfirm = document.getElementById('password-confirm').value;
+        
+        if (password !== passwordConfirm) {
+          showError('Passwords do not match');
+          return;
+        }
+        
+        await handleSignUp(email, password);
+      } else {
+        await handleSignIn(email, password);
+      }
+    });
+
+    // Sign up handler
+    async function handleSignUp(email, password) {
+      try {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Creating account...';
+        
+        const response = await fetch(`${API_BASE}/auth/register`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+            is_active: true,
+            is_verified: false
+          })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.detail || 'Registration failed');
+        }
+
+        showSuccess('Account created successfully! Signing you in...');
+        
+        // Auto-login after successful registration
+        setTimeout(() => handleSignIn(email, password), 1000);
+        
+      } catch (error) {
+        showError(error.message);
+        submitButton.disabled = false;
+        submitButton.textContent = 'Sign Up';
+      }
+    }
+
+    // Sign in handler
+    async function handleSignIn(email, password) {
+      try {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Signing in...';
+        
+        const formData = new FormData();
+        formData.append('username', email);
+        formData.append('password', password);
+        
+        const response = await fetch(`${API_BASE}/auth/jwt/login`, {
+          method: 'POST',
+          body: formData
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.detail || 'Login failed');
+        }
+
+        // Store JWT token
+        sessionStorage.setItem('access_token', data.access_token);
+        
+        // Switch to KYC section
+        authSection.style.display = 'none';
+        kycSection.style.display = 'block';
+        
+      } catch (error) {
+        showError(error.message);
+        submitButton.disabled = false;
+        submitButton.textContent = isSignUpMode ? 'Sign Up' : 'Sign In';
+      }
+    }
+
+    // Verify identity button handler
+    verifyButton.addEventListener('click', async () => {
+      try {
+        verifyButton.disabled = true;
+        verifyButton.textContent = 'Starting verification...';
+        
+        const token = sessionStorage.getItem('access_token');
+        const response = await fetch(`${API_BASE}/kyc/start`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.detail || 'Failed to start verification');
+        }
+
+        // Redirect to Stripe verification with return URL
+        window.location.href = data.url;
+        
+      } catch (error) {
+        showError(error.message);
+        verifyButton.disabled = false;
+        verifyButton.textContent = 'Verify Identity';
+      }
+    });
+
+    // Utility functions
+    function showError(message) {
+      errorDisplay.textContent = message;
+      errorDisplay.style.display = 'block';
+      successDisplay.style.display = 'none';
+    }
+
+    function showSuccess(message) {
+      successDisplay.textContent = message;
+      successDisplay.style.display = 'block';
+      errorDisplay.style.display = 'none';
+    }
+
+    function clearMessages() {
+      errorDisplay.style.display = 'none';
+      successDisplay.style.display = 'none';
+    }
+
+    // Check if user is already logged in
+    window.addEventListener('load', () => {
+      const token = sessionStorage.getItem('access_token');
+      if (token) {
+        authSection.style.display = 'none';
+        kycSection.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
