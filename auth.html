@@ -164,6 +164,9 @@
         <p>Already have an account? 
           <button type="button" id="toggle-mode">Sign In</button>
         </p>
+        <div id="forgot-password-link" style="display: none; margin-top: 10px;">
+          <a href="forgot-password.html">Forgot your password?</a>
+        </div>
       </div>
     </div>
 
@@ -196,6 +199,7 @@
     const errorDisplay = document.getElementById('error-display');
     const successDisplay = document.getElementById('success-display');
     const verifyButton = document.getElementById('verify-button');
+    const forgotPasswordLink = document.getElementById('forgot-password-link');
 
     // Toggle between sign up and sign in modes
     toggleButton.addEventListener('click', () => {
@@ -207,6 +211,7 @@
         toggleButton.textContent = 'Sign In';
         nameGroup.style.display = 'flex';
         passwordConfirmGroup.style.display = 'flex';
+        forgotPasswordLink.style.display = 'none';
         toggleButton.parentElement.innerHTML = 'Already have an account? <button type="button" id="toggle-mode">Sign In</button>';
       } else {
         formTitle.textContent = 'Sign In to Ultra Civic';
@@ -214,6 +219,7 @@
         toggleButton.textContent = 'Sign Up';
         nameGroup.style.display = 'none';
         passwordConfirmGroup.style.display = 'none';
+        forgotPasswordLink.style.display = 'block';
         toggleButton.parentElement.innerHTML = 'Don\'t have an account? <button type="button" id="toggle-mode">Sign Up</button>';
       }
       
