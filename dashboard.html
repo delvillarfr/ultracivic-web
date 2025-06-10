@@ -168,7 +168,11 @@
   </div>
 
   <script>
-    const API_BASE = 'http://localhost:8000';
+    // Use production API on ultracivic.com, otherwise use localhost
+    const API_BASE = window.location.hostname === 'ultracivic.com' 
+      ? 'https://ultracivic-backend.onrender.com' 
+      : 'http://localhost:8000';
+    
     let pollInterval = null;
     let pollDelay = 5000; // Start with 5 seconds
     let maxPollDelay = 30000; // Maximum 30 seconds
@@ -188,25 +192,33 @@
     const pollIntervalSpan = document.getElementById('poll-interval');
     const errorDisplay = document.getElementById('error-display');
 
-    // Check if user is logged in
-    function checkAuth() {
-      const token = sessionStorage.getItem('access_token');
-      if (!token) {
+    // Check if user is authenticated via session
+    async function checkAuth() {
+      try {
+        const response = await fetch(`${API_BASE}/auth/session`, {
+          method: 'GET',
+          credentials: 'include'
+        });
+
+        if (response.ok) {
+          return true;
+        } else {
+          window.location.href = 'auth.html';
+          return false;
+        }
+      } catch (error) {
         window.location.href = 'auth.html';
         return false;
       }
-      return true;
     }
 
     // Check verification status
     async function checkVerificationStatus() {
       try {
-        const token = sessionStorage.getItem('access_token');
-        
         const response = await fetch(`${API_BASE}/kyc/verified-only`, {
           method: 'GET',
+          credentials: 'include',
           headers: {
-            'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
           }
         });
@@ -221,8 +233,7 @@
           showPendingStatus(errorData);
           return false;
         } else if (response.status === 401) {
-          // Token expired or invalid
-          sessionStorage.removeItem('access_token');
+          // Session expired or invalid
           window.location.href = 'auth.html';
           return false;
         } else {
@@ -231,6 +242,28 @@
       } catch (error) {
         showError(`Failed to check verification status: ${error.message}`);
         return false;
+      }
+    }
+
+    // Get current user information
+    async function getCurrentUser() {
+      try {
+        const response = await fetch(`${API_BASE}/me`, {
+          method: 'GET',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (response.ok) {
+          return await response.json();
+        } else {
+          throw new Error(`Failed to get user info: ${response.status}`);
+        }
+      } catch (error) {
+        showError(`Failed to load user information: ${error.message}`);
+        return null;
       }
     }
 
@@ -319,11 +352,10 @@
         retryButton.disabled = true;
         retryButton.textContent = 'Starting verification...';
         
-        const token = sessionStorage.getItem('access_token');
         const response = await fetch(`${API_BASE}/kyc/start`, {
           method: 'POST',
+          credentials: 'include',
           headers: {
-            'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
           }
         });
@@ -344,13 +376,25 @@
       }
     }
 
+    // Logout function
+    async function logout() {
+      try {
+        // Call logout endpoint to clear session on server
+        await fetch(`${API_BASE}/auth/logout`, {
+          method: 'POST',
+          credentials: 'include'
+        });
+      } catch (error) {
+        console.log('Error during logout:', error);
+      } finally {
+        // Always redirect to auth page
+        window.location.href = 'auth.html';
+      }
+    }
+
     // Event listeners
     retryButton.addEventListener('click', startKYCVerification);
-    
-    logoutButton.addEventListener('click', () => {
-      sessionStorage.removeItem('access_token');
-      window.location.href = 'auth.html';
-    });
+    logoutButton.addEventListener('click', logout);
 
     // Utility functions
     function showError(message) {
@@ -364,8 +408,22 @@
 
     // Initialize dashboard
     window.addEventListener('load', async () => {
-      if (!checkAuth()) {
+      // Check authentication first
+      if (!(await checkAuth())) {
         return;
+      }
+      
+      // Get current user information
+      const userData = await getCurrentUser();
+      if (userData) {
+        // Populate user info
+        userEmail.textContent = userData.email;
+        userId.textContent = userData.id;
+        kycStatus.textContent = userData.kyc_status;
+        
+        // Show user info and actions
+        userInfo.style.display = 'block';
+        actions.style.display = 'block';
       }
       
       // Initial status check
