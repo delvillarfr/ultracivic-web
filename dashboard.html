@@ -6,95 +6,240 @@
   <title>Ultra Civic - Dashboard</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="shortcut icon" href="media/browser-icon.svg" type="image/x-icon">
+  <script src="https://js.stripe.com/v3/"></script>
   <style>
     .dashboard-container {
-      max-width: 600px;
+      max-width: 1000px;
       margin: 0 auto;
       padding: 20px;
+    }
+    
+    .dashboard-section {
       background: white;
       border-radius: 8px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-    
-    .status-message {
-      font-size: 24px;
-      margin: 30px 0;
-      padding: 20px;
-      border-radius: 8px;
-    }
-    
-    .checking {
-      color: #666;
-      background-color: #f5f5f5;
-      border: 2px solid #ddd;
-    }
-    
-    .verified {
-      color: #2e7d32;
-      background-color: #e8f5e8;
-      border: 2px solid #4caf50;
-    }
-    
-    .pending {
-      color: #f57c00;
-      background-color: #fff8e1;
-      border: 2px solid #ff9800;
-    }
-    
-    .failed {
-      color: #d32f2f;
-      background-color: #ffebee;
-      border: 2px solid #f44336;
-    }
-    
-    .unverified {
-      color: #666;
-      background-color: #f5f5f5;
-      border: 2px solid #ddd;
-    }
-    
-    .user-info {
       margin: 20px 0;
-      padding: 15px;
-      background-color: #f9f9f9;
-      border-radius: 8px;
-      text-align: left;
+      padding: 30px;
     }
     
-    .user-info h3 {
-      margin-bottom: 10px;
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #f0f0f0;
+      padding-bottom: 15px;
+    }
+    
+    .section-title {
+      font-size: 24px;
+      font-weight: bold;
+      color: rgb(23, 23, 130);
+      margin: 0;
+    }
+    
+    .status-badge {
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    
+    .status-verified { background: #e8f5e8; color: #2e7d32; }
+    .status-pending { background: #fff8e1; color: #f57c00; }
+    .status-unverified { background: #f5f5f5; color: #666; }
+    .status-failed { background: #ffebee; color: #d32f2f; }
+    
+    .order-form {
+      display: grid;
+      gap: 20px;
+      max-width: 500px;
+    }
+    
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .form-group label {
+      margin-bottom: 8px;
+      font-weight: bold;
       color: rgb(30,30,30);
     }
     
-    .user-info p {
-      margin: 5px 0;
-      color: rgb(60,60,60);
+    .form-group input {
+      padding: 12px;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      font-size: 16px;
+      font-family: "Atkinson Hyperlegible Next";
+      transition: border-color 0.3s;
+    }
+    
+    .form-group input:focus {
+      outline: none;
+      border-color: rgb(23, 23, 130);
+    }
+    
+    .price-display {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      border: 2px solid #e9ecef;
+      margin: 20px 0;
+    }
+    
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      margin: 8px 0;
+    }
+    
+    .price-total {
+      font-weight: bold;
+      font-size: 18px;
+      border-top: 2px solid #ddd;
+      padding-top: 10px;
+      margin-top: 10px;
     }
     
     .action-button {
-      padding: 12px 24px;
+      padding: 14px 28px;
       background-color: rgb(23, 23, 130);
       color: white;
       border: none;
-      border-radius: 4px;
+      border-radius: 6px;
       font-size: 16px;
       font-family: "Atkinson Hyperlegible Next";
+      font-weight: 600;
       cursor: pointer;
-      margin: 10px;
-      transition: background-color 0.3s;
+      transition: all 0.3s ease;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
     }
     
     .action-button:hover {
       background-color: rgb(18, 18, 100);
+      transform: translateY(-1px);
     }
     
-    .action-button.retry {
-      background-color: #ff9800;
+    .action-button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+      transform: none;
     }
     
-    .action-button.retry:hover {
-      background-color: #f57c00;
+    .action-button.secondary {
+      background-color: #6c757d;
+    }
+    
+    .action-button.secondary:hover {
+      background-color: #545b62;
+    }
+    
+    .action-button.success {
+      background-color: #28a745;
+    }
+    
+    .action-button.success:hover {
+      background-color: #218838;
+    }
+    
+    .order-card {
+      border: 2px solid #e9ecef;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 15px 0;
+      background: #f8f9fa;
+    }
+    
+    .order-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    
+    .order-id {
+      font-family: monospace;
+      font-size: 14px;
+      color: #666;
+    }
+    
+    .order-details {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin: 15px 0;
+    }
+    
+    .detail-item {
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .detail-label {
+      font-weight: bold;
+      color: rgb(60,60,60);
+    }
+    
+    .stripe-card {
+      padding: 15px;
+      border: 2px solid #ddd;
+      border-radius: 6px;
+      background: white;
+      margin: 20px 0;
+    }
+    
+    .payment-steps {
+      background: #e3f2fd;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    
+    .payment-steps h4 {
+      margin-top: 0;
+      color: #1976d2;
+    }
+    
+    .payment-steps ol {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+    
+    .payment-steps li {
+      margin: 8px 0;
+      color: #424242;
+    }
+    
+    .error-message {
+      color: #d32f2f;
+      background-color: #ffebee;
+      padding: 15px;
+      border-radius: 6px;
+      margin: 15px 0;
+      border-left: 4px solid #d32f2f;
+    }
+    
+    .success-message {
+      color: #2e7d32;
+      background-color: #e8f5e8;
+      padding: 15px;
+      border-radius: 6px;
+      margin: 15px 0;
+      border-left: 4px solid #2e7d32;
+    }
+    
+    .info-message {
+      color: #1976d2;
+      background-color: #e3f2fd;
+      padding: 15px;
+      border-radius: 6px;
+      margin: 15px 0;
+      border-left: 4px solid #1976d2;
     }
     
     .loading-spinner {
@@ -113,18 +258,28 @@
       100% { transform: rotate(360deg); }
     }
     
-    .poll-info {
-      font-size: 14px;
-      color: #666;
-      margin-top: 10px;
+    .hidden {
+      display: none !important;
     }
     
-    .error-message {
-      color: #d32f2f;
-      background-color: #ffebee;
-      padding: 15px;
-      border-radius: 4px;
+    .user-info {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
       margin: 20px 0;
+    }
+    
+    .user-detail {
+      display: flex;
+      justify-content: space-between;
+      margin: 8px 0;
+      padding: 4px 0;
+    }
+    
+    .order-empty {
+      text-align: center;
+      padding: 40px 20px;
+      color: #666;
     }
   </style>
 </head>
@@ -136,70 +291,221 @@
   </div>
 
   <div class="dashboard-container atkinson">
-    <h2>Ultra Civic Dashboard</h2>
-    
-    <div id="error-display" class="error-message" style="display: none;"></div>
-    
-    <div id="status-message" class="status-message checking">
-      <span class="loading-spinner"></span>
-      Checking verification status...
+    <!-- KYC Status Section -->
+    <div class="dashboard-section">
+      <div class="section-header">
+        <h2 class="section-title">Account Status</h2>
+        <div id="kyc-status-badge" class="status-badge">Loading...</div>
+      </div>
+      
+      <div id="user-info" class="user-info" style="display: none;">
+        <div class="user-detail">
+          <span class="detail-label">Email:</span>
+          <span id="user-email"></span>
+        </div>
+        <div class="user-detail">
+          <span class="detail-label">KYC Status:</span>
+          <span id="kyc-status-text"></span>
+        </div>
+        <div class="user-detail">
+          <span class="detail-label">Account ID:</span>
+          <span id="user-id"></span>
+        </div>
+      </div>
+      
+      <div id="kyc-actions" style="display: none;">
+        <button id="start-kyc" class="action-button" style="display: none;">
+          Verify Identity
+        </button>
+        <button id="retry-kyc" class="action-button secondary" style="display: none;">
+          Retry Verification
+        </button>
+      </div>
+      
+      <div id="kyc-pending-info" class="info-message" style="display: none;">
+        <strong>Verification in Progress</strong><br>
+        Please complete your identity verification to start retiring CO2 allowances and receiving tokens.
+      </div>
+    </div>
+
+    <!-- Order Management Section -->
+    <div class="dashboard-section">
+      <div class="section-header">
+        <h2 class="section-title">Retire CO2 Allowances</h2>
+        <button id="logout-button" class="action-button secondary">Sign Out</button>
+      </div>
+      
+      <!-- New Order Form -->
+      <div id="order-form-section">
+        <h3>Create New Order</h3>
+        
+        <div class="payment-steps">
+          <h4>How it works:</h4>
+          <ol>
+            <li>Choose how many tonnes of CO2 to retire</li>
+            <li>Authorize payment with your card (not charged yet)</li>
+            <li>Complete identity verification if needed</li>
+            <li>Payment is captured and allowances are retired</li>
+            <li>Receive $UCRGGI tokens (if ETH address provided)</li>
+          </ol>
+        </div>
+        
+        <form id="order-form" class="order-form">
+          <div class="form-group">
+            <label for="tonnes">Tonnes of CO2 to Retire</label>
+            <input type="number" id="tonnes" name="tonnes" min="1" max="1000" value="1" required>
+            <small>Minimum: 1 tonne, Maximum: 1,000 tonnes</small>
+          </div>
+          
+          <div class="form-group">
+            <label for="eth-address">Ethereum Address (Optional)</label>
+            <input type="text" id="eth-address" name="eth_address" placeholder="0x...">
+            <small>Leave blank to receive tokens later. You'll get 0.3 $UCRGGI per tonne.</small>
+          </div>
+          
+          <div id="price-display" class="price-display">
+            <div class="price-row">
+              <span>CO2 Retirement (<span id="price-tonnes">1</span> tonnes @ $20/tonne):</span>
+              <span>$<span id="price-amount">20.00</span></span>
+            </div>
+            <div class="price-row">
+              <span>Processing Fee:</span>
+              <span>$4.00</span>
+            </div>
+            <div class="price-row price-total">
+              <span>Total:</span>
+              <span>$<span id="price-total">24.00</span></span>
+            </div>
+            <div class="price-row" id="tokens-display">
+              <span>Tokens to receive:</span>
+              <span><span id="tokens-amount">0.3</span> $UCRGGI</span>
+            </div>
+          </div>
+          
+          <button type="submit" class="action-button" id="create-order-btn">
+            Create Order
+          </button>
+        </form>
+      </div>
+      
+      <!-- Payment Section -->
+      <div id="payment-section" class="hidden">
+        <h3>Complete Payment</h3>
+        <p>Your order has been created. Please complete payment authorization:</p>
+        
+        <div id="current-order-details" class="order-card">
+          <!-- Order details will be populated here -->
+        </div>
+        
+        <div id="stripe-card" class="stripe-card">
+          <!-- Stripe Elements will be mounted here -->
+        </div>
+        
+        <button id="pay-button" class="action-button">
+          <span class="loading-spinner hidden"></span>
+          Authorize Payment
+        </button>
+        
+        <div class="info-message">
+          <strong>Note:</strong> Your card will be authorized but not charged until after identity verification.
+        </div>
+      </div>
+      
+      <!-- Orders List -->
+      <div id="orders-section">
+        <h3>Your Orders</h3>
+        <div id="orders-list">
+          <div class="order-empty">
+            <span class="loading-spinner"></span>
+            Loading orders...
+          </div>
+        </div>
+      </div>
     </div>
     
-    <div id="user-info" class="user-info" style="display: none;">
-      <h3>Account Information</h3>
-      <p><strong>Email:</strong> <span id="user-email"></span></p>
-      <p><strong>User ID:</strong> <span id="user-id"></span></p>
-      <p><strong>KYC Status:</strong> <span id="kyc-status"></span></p>
-      <p><strong>Session ID:</strong> <span id="session-id"></span></p>
-    </div>
-    
-    <div id="actions" style="display: none;">
-      <button id="retry-verification" class="action-button retry" style="display: none;">
-        Retry Verification
-      </button>
-      <button id="logout-button" class="action-button">
-        Sign Out
-      </button>
-    </div>
-    
-    <div id="poll-info" class="poll-info" style="display: none;">
-      Checking for verification updates every <span id="poll-interval">5</span> seconds...
-    </div>
+    <!-- Error/Success Messages -->
+    <div id="error-display" class="error-message hidden"></div>
+    <div id="success-display" class="success-message hidden"></div>
+    <div id="info-display" class="info-message hidden"></div>
   </div>
 
   <script>
-    // Use production API on ultracivic.com, otherwise use localhost
+    // Configuration
     const API_BASE = window.location.hostname === 'ultracivic.com' 
       ? 'https://ultracivic-backend.onrender.com' 
       : 'http://localhost:8000';
     
-    let pollInterval = null;
-    let pollDelay = 5000; // Start with 5 seconds
-    let maxPollDelay = 30000; // Maximum 30 seconds
-    let pollAttempts = 0;
-
+    const STRIPE_PUBLISHABLE_KEY = 'pk_test_51RW3v8LlrN8HDQXUcmhbcQYmNjKOJB9u3CbPtxadhRKb35x9zr7QTAX0g8ZxAkQN2p1nQNDLSNHs9zxk9c3OzNws00PbNdD2YB';
+    
+    // Global variables
+    let stripe = null;
+    let elements = null;
+    let cardElement = null;
+    let currentUser = null;
+    let currentOrder = null;
+    
     // DOM elements
-    const statusMessage = document.getElementById('status-message');
+    const kycStatusBadge = document.getElementById('kyc-status-badge');
     const userInfo = document.getElementById('user-info');
     const userEmail = document.getElementById('user-email');
+    const userKycStatus = document.getElementById('kyc-status-text');
     const userId = document.getElementById('user-id');
-    const kycStatus = document.getElementById('kyc-status');
-    const sessionId = document.getElementById('session-id');
-    const actions = document.getElementById('actions');
-    const retryButton = document.getElementById('retry-verification');
-    const logoutButton = document.getElementById('logout-button');
-    const pollInfo = document.getElementById('poll-info');
-    const pollIntervalSpan = document.getElementById('poll-interval');
+    const kycActions = document.getElementById('kyc-actions');
+    const startKycBtn = document.getElementById('start-kyc');
+    const retryKycBtn = document.getElementById('retry-kyc');
+    const kycPendingInfo = document.getElementById('kyc-pending-info');
+    const logoutBtn = document.getElementById('logout-button');
+    
+    const orderForm = document.getElementById('order-form');
+    const tonnesInput = document.getElementById('tonnes');
+    const ethAddressInput = document.getElementById('eth-address');
+    const createOrderBtn = document.getElementById('create-order-btn');
+    
+    const paymentSection = document.getElementById('payment-section');
+    const currentOrderDetails = document.getElementById('current-order-details');
+    const stripeCardElement = document.getElementById('stripe-card');
+    const payButton = document.getElementById('pay-button');
+    
+    const ordersList = document.getElementById('orders-list');
+    
     const errorDisplay = document.getElementById('error-display');
-
-    // Check if user is authenticated via session
+    const successDisplay = document.getElementById('success-display');
+    const infoDisplay = document.getElementById('info-display');
+    
+    // Price display elements
+    const priceTonnes = document.getElementById('price-tonnes');
+    const priceAmount = document.getElementById('price-amount');
+    const priceTotal = document.getElementById('price-total');
+    const tokensDisplay = document.getElementById('tokens-display');
+    const tokensAmount = document.getElementById('tokens-amount');
+    
+    // Initialize dashboard
+    window.addEventListener('load', async () => {
+      // Check authentication
+      const isAuth = await checkAuth();
+      if (!isAuth) return;
+      
+      // Initialize Stripe
+      await initializeStripe();
+      
+      // Load user data
+      await loadUserData();
+      
+      // Load orders
+      await loadOrders();
+      
+      // Set up event listeners
+      setupEventListeners();
+    });
+    
+    // Check authentication
     async function checkAuth() {
       try {
         const response = await fetch(`${API_BASE}/auth/session`, {
           method: 'GET',
           credentials: 'include'
         });
-
+        
         if (response.ok) {
           return true;
         } else {
@@ -207,151 +513,363 @@
           return false;
         }
       } catch (error) {
+        console.error('Auth check failed:', error);
         window.location.href = 'auth.html';
         return false;
       }
     }
-
-    // Check verification status
-    async function checkVerificationStatus() {
+    
+    // Initialize Stripe
+    async function initializeStripe() {
       try {
-        const response = await fetch(`${API_BASE}/kyc/verified-only`, {
-          method: 'GET',
-          credentials: 'include',
-          headers: {
-            'Content-Type': 'application/json'
+        stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
+        elements = stripe.elements();
+        
+        // Create card element
+        cardElement = elements.create('card', {
+          style: {
+            base: {
+              fontSize: '16px',
+              color: '#424770',
+              '::placeholder': {
+                color: '#aab7c4',
+              },
+            },
+          },
+        });
+        
+        // Mount card element
+        cardElement.mount('#stripe-card');
+        
+        // Handle real-time validation errors from the card Element
+        cardElement.on('change', ({error}) => {
+          if (error) {
+            showError(error.message);
+          } else {
+            hideError();
           }
         });
-
-        if (response.ok) {
-          const data = await response.json();
-          showVerifiedStatus(data);
-          stopPolling();
-          return true;
-        } else if (response.status === 403) {
-          const errorData = await response.json();
-          showPendingStatus(errorData);
-          return false;
-        } else if (response.status === 401) {
-          // Session expired or invalid
-          window.location.href = 'auth.html';
-          return false;
-        } else {
-          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-        }
+        
       } catch (error) {
-        showError(`Failed to check verification status: ${error.message}`);
-        return false;
+        console.error('Stripe initialization failed:', error);
+        showError('Failed to initialize payment system');
       }
     }
-
-    // Get current user information
-    async function getCurrentUser() {
+    
+    // Load user data
+    async function loadUserData() {
       try {
         const response = await fetch(`${API_BASE}/me`, {
           method: 'GET',
+          credentials: 'include'
+        });
+        
+        if (response.ok) {
+          currentUser = await response.json();
+          updateUserDisplay();
+        } else {
+          throw new Error('Failed to load user data');
+        }
+      } catch (error) {
+        console.error('Failed to load user data:', error);
+        showError('Failed to load user information');
+      }
+    }
+    
+    // Update user display
+    function updateUserDisplay() {
+      if (!currentUser) return;
+      
+      // Update user info
+      userEmail.textContent = currentUser.email;
+      userKycStatus.textContent = currentUser.kyc_status;
+      userId.textContent = currentUser.id;
+      
+      // Update KYC status badge and actions
+      const status = currentUser.kyc_status;
+      kycStatusBadge.className = `status-badge status-${status}`;
+      kycStatusBadge.textContent = status.charAt(0).toUpperCase() + status.slice(1);
+      
+      // Show appropriate actions based on KYC status
+      if (status === 'unverified') {
+        startKycBtn.style.display = 'inline-block';
+        kycPendingInfo.style.display = 'block';
+      } else if (status === 'failed') {
+        retryKycBtn.style.display = 'inline-block';
+        kycPendingInfo.style.display = 'block';
+      } else if (status === 'pending') {
+        kycPendingInfo.style.display = 'block';
+      }
+      
+      // Show user info and actions
+      userInfo.style.display = 'block';
+      kycActions.style.display = 'block';
+    }
+    
+    // Load orders
+    async function loadOrders() {
+      try {
+        const response = await fetch(`${API_BASE}/orders`, {
+          method: 'GET',
+          credentials: 'include'
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          displayOrders(data.orders);
+        } else {
+          throw new Error('Failed to load orders');
+        }
+      } catch (error) {
+        console.error('Failed to load orders:', error);
+        ordersList.innerHTML = '<div class="order-empty">Failed to load orders</div>';
+      }
+    }
+    
+    // Display orders
+    function displayOrders(orders) {
+      if (orders.length === 0) {
+        ordersList.innerHTML = '<div class="order-empty">No orders yet. Create your first order above!</div>';
+        return;
+      }
+      
+      ordersList.innerHTML = orders.map(order => `
+        <div class="order-card">
+          <div class="order-header">
+            <div class="order-id">Order #${order.order_id.substring(0, 8)}</div>
+            <div class="status-badge status-${order.status}">${order.status.replace('_', ' ')}</div>
+          </div>
+          <div class="order-details">
+            <div class="detail-item">
+              <span class="detail-label">CO2 Tonnes:</span>
+              <span>${order.tonnes_co2}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Total:</span>
+              <span>$${order.total_usd}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Tokens:</span>
+              <span>${order.tokens_to_mint || 'N/A'} $UCRGGI</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">ETH Address:</span>
+              <span>${order.eth_address ? order.eth_address.substring(0, 10) + '...' : 'Not provided'}</span>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+    
+    // Set up event listeners
+    function setupEventListeners() {
+      // Price calculation
+      tonnesInput.addEventListener('input', updatePriceDisplay);
+      ethAddressInput.addEventListener('input', updatePriceDisplay);
+      
+      // Order form submission
+      orderForm.addEventListener('submit', handleOrderSubmit);
+      
+      // Payment button
+      payButton.addEventListener('click', handlePayment);
+      
+      // KYC actions
+      startKycBtn.addEventListener('click', startKycVerification);
+      retryKycBtn.addEventListener('click', startKycVerification);
+      
+      // Logout
+      logoutBtn.addEventListener('click', handleLogout);
+    }
+    
+    // Update price display
+    function updatePriceDisplay() {
+      const tonnes = parseInt(tonnesInput.value) || 1;
+      const amount = tonnes * 20;
+      const total = amount + 4;
+      const tokens = tonnes * 0.3;
+      
+      priceTonnes.textContent = tonnes;
+      priceAmount.textContent = amount.toFixed(2);
+      priceTotal.textContent = total.toFixed(2);
+      tokensAmount.textContent = tokens.toFixed(1);
+      
+      // Show/hide tokens display based on ETH address
+      const hasEthAddress = ethAddressInput.value.trim().length > 0;
+      tokensDisplay.style.display = hasEthAddress ? 'flex' : 'none';
+    }
+    
+    // Handle order form submission
+    async function handleOrderSubmit(e) {
+      e.preventDefault();
+      
+      const tonnes = parseInt(tonnesInput.value);
+      const ethAddress = ethAddressInput.value.trim() || null;
+      
+      if (tonnes < 1 || tonnes > 1000) {
+        showError('Please enter between 1 and 1000 tonnes');
+        return;
+      }
+      
+      try {
+        createOrderBtn.disabled = true;
+        createOrderBtn.innerHTML = '<span class="loading-spinner"></span>Creating order...';
+        
+        // Create order
+        const response = await fetch(`${API_BASE}/orders`, {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            tonnes_co2: tonnes,
+            eth_address: ethAddress
+          })
+        });
+        
+        if (response.ok) {
+          currentOrder = await response.json();
+          displayCurrentOrder();
+          showPaymentSection();
+          await createPaymentIntent();
+        } else {
+          const error = await response.json();
+          throw new Error(error.detail || 'Failed to create order');
+        }
+        
+      } catch (error) {
+        console.error('Order creation failed:', error);
+        showError(error.message);
+      } finally {
+        createOrderBtn.disabled = false;
+        createOrderBtn.textContent = 'Create Order';
+      }
+    }
+    
+    // Display current order
+    function displayCurrentOrder() {
+      if (!currentOrder) return;
+      
+      currentOrderDetails.innerHTML = `
+        <div class="order-header">
+          <div class="order-id">Order #${currentOrder.order_id.substring(0, 8)}</div>
+          <div class="status-badge status-${currentOrder.status}">${currentOrder.status.replace('_', ' ')}</div>
+        </div>
+        <div class="order-details">
+          <div class="detail-item">
+            <span class="detail-label">CO2 Tonnes:</span>
+            <span>${currentOrder.tonnes_co2}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Amount:</span>
+            <span>$${currentOrder.amount_usd}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Fee:</span>
+            <span>$${currentOrder.fee_usd}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Total:</span>
+            <span><strong>$${currentOrder.total_usd}</strong></span>
+          </div>
+          ${currentOrder.tokens_to_mint ? `
+          <div class="detail-item">
+            <span class="detail-label">Tokens:</span>
+            <span>${currentOrder.tokens_to_mint} $UCRGGI</span>
+          </div>
+          ` : ''}
+        </div>
+      `;
+    }
+    
+    // Show payment section
+    function showPaymentSection() {
+      paymentSection.classList.remove('hidden');
+      // Scroll to payment section
+      paymentSection.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    // Create payment intent
+    async function createPaymentIntent() {
+      try {
+        const response = await fetch(`${API_BASE}/orders/${currentOrder.order_id}/payment-intent`, {
+          method: 'POST',
           credentials: 'include',
           headers: {
             'Content-Type': 'application/json'
           }
         });
-
+        
         if (response.ok) {
-          return await response.json();
+          const paymentData = await response.json();
+          currentOrder.client_secret = paymentData.client_secret;
+          currentOrder.payment_status = paymentData.status;
         } else {
-          throw new Error(`Failed to get user info: ${response.status}`);
+          const error = await response.json();
+          throw new Error(error.detail || 'Failed to create payment intent');
         }
+        
       } catch (error) {
-        showError(`Failed to load user information: ${error.message}`);
-        return null;
+        console.error('Payment intent creation failed:', error);
+        showError(error.message);
       }
     }
-
-    // Show verified status
-    function showVerifiedStatus(data) {
-      statusMessage.className = 'status-message verified';
-      statusMessage.innerHTML = '✅ You are verified!';
-      
-      // Show user information
-      userEmail.textContent = data.email;
-      userId.textContent = data.user_id;
-      kycStatus.textContent = data.kyc_status;
-      sessionId.textContent = data.session_id || 'N/A';
-      
-      userInfo.style.display = 'block';
-      actions.style.display = 'block';
-      pollInfo.style.display = 'none';
-      
-      hideError();
-    }
-
-    // Show pending status
-    function showPendingStatus(errorData) {
-      const currentStatus = errorData.detail?.kyc_status || 'unknown';
-      
-      switch (currentStatus) {
-        case 'pending':
-          statusMessage.className = 'status-message pending';
-          statusMessage.innerHTML = '⏳ Verification is pending...';
-          break;
-        case 'failed':
-          statusMessage.className = 'status-message failed';
-          statusMessage.innerHTML = '❌ Verification failed';
-          retryButton.style.display = 'inline-block';
-          break;
-        case 'unverified':
-          statusMessage.className = 'status-message unverified';
-          statusMessage.innerHTML = '📋 Identity verification required';
-          retryButton.style.display = 'inline-block';
-          break;
-        default:
-          statusMessage.className = 'status-message checking';
-          statusMessage.innerHTML = '🔍 Checking verification status...';
+    
+    // Handle payment
+    async function handlePayment() {
+      if (!currentOrder || !currentOrder.client_secret) {
+        showError('No payment intent available');
+        return;
       }
       
-      actions.style.display = 'block';
-      hideError();
-    }
-
-    // Start polling for verification status
-    function startPolling() {
-      if (pollInterval) {
-        clearInterval(pollInterval);
-      }
-      
-      pollInfo.style.display = 'block';
-      pollIntervalSpan.textContent = Math.round(pollDelay / 1000);
-      
-      pollInterval = setInterval(async () => {
-        pollAttempts++;
-        const isVerified = await checkVerificationStatus();
-        
-        if (!isVerified) {
-          // Implement exponential backoff with jitter
-          if (pollAttempts % 3 === 0 && pollDelay < maxPollDelay) {
-            pollDelay = Math.min(pollDelay * 1.5, maxPollDelay);
-            clearInterval(pollInterval);
-            startPolling();
-          }
-        }
-      }, pollDelay);
-    }
-
-    // Stop polling
-    function stopPolling() {
-      if (pollInterval) {
-        clearInterval(pollInterval);
-        pollInterval = null;
-      }
-      pollInfo.style.display = 'none';
-    }
-
-    // Start KYC verification
-    async function startKYCVerification() {
       try {
-        retryButton.disabled = true;
-        retryButton.textContent = 'Starting verification...';
+        payButton.disabled = true;
+        payButton.innerHTML = '<span class="loading-spinner"></span>Processing...';
         
+        // Confirm payment with Stripe
+        const result = await stripe.confirmCardPayment(currentOrder.client_secret, {
+          payment_method: {
+            card: cardElement,
+            billing_details: {
+              email: currentUser.email,
+            },
+          }
+        });
+        
+        if (result.error) {
+          throw new Error(result.error.message);
+        } else {
+          // Payment succeeded
+          showSuccess('Payment authorized successfully! Complete identity verification to finalize your order.');
+          paymentSection.classList.add('hidden');
+          
+          // Check if user needs KYC
+          if (currentUser.kyc_status === 'unverified' || currentUser.kyc_status === 'failed') {
+            showInfo('Please complete identity verification to capture your payment and retire the CO2 allowances.');
+          }
+          
+          // Reload orders and user data
+          await loadOrders();
+          await loadUserData();
+          
+          // Clear form
+          orderForm.reset();
+          updatePriceDisplay();
+          currentOrder = null;
+        }
+        
+      } catch (error) {
+        console.error('Payment failed:', error);
+        showError(error.message);
+      } finally {
+        payButton.disabled = false;
+        payButton.textContent = 'Authorize Payment';
+      }
+    }
+    
+    // Start KYC verification
+    async function startKycVerification() {
+      try {
         const response = await fetch(`${API_BASE}/kyc/start`, {
           method: 'POST',
           credentials: 'include',
@@ -359,98 +877,79 @@
             'Content-Type': 'application/json'
           }
         });
-
-        const data = await response.json();
-
-        if (!response.ok) {
-          throw new Error(data.detail || 'Failed to start verification');
+        
+        if (response.ok) {
+          const data = await response.json();
+          // Redirect to Stripe verification
+          window.location.href = data.url;
+        } else {
+          const error = await response.json();
+          throw new Error(error.detail || 'Failed to start verification');
         }
-
-        // Redirect to Stripe verification
-        window.location.href = data.url;
         
       } catch (error) {
+        console.error('KYC verification failed:', error);
         showError(error.message);
-        retryButton.disabled = false;
-        retryButton.textContent = 'Retry Verification';
       }
     }
-
-    // Logout function
-    async function logout() {
+    
+    // Handle logout
+    async function handleLogout() {
       try {
-        // Call logout endpoint to clear session on server
-        await fetch(`${API_BASE}/auth/logout`, {
+        const response = await fetch(`${API_BASE}/auth/logout`, {
           method: 'POST',
           credentials: 'include'
         });
+        
+        // Redirect to auth page regardless of response
+        window.location.href = 'auth.html';
+        
       } catch (error) {
-        console.log('Error during logout:', error);
-      } finally {
-        // Always redirect to auth page
+        console.error('Logout failed:', error);
+        // Still redirect on error
         window.location.href = 'auth.html';
       }
     }
-
-    // Event listeners
-    retryButton.addEventListener('click', startKYCVerification);
-    logoutButton.addEventListener('click', logout);
-
-    // Utility functions
+    
+    // Utility functions for messages
     function showError(message) {
       errorDisplay.textContent = message;
-      errorDisplay.style.display = 'block';
+      errorDisplay.classList.remove('hidden');
+      successDisplay.classList.add('hidden');
+      infoDisplay.classList.add('hidden');
+      
+      // Scroll to error
+      errorDisplay.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
-
+    
+    function showSuccess(message) {
+      successDisplay.textContent = message;
+      successDisplay.classList.remove('hidden');
+      errorDisplay.classList.add('hidden');
+      infoDisplay.classList.add('hidden');
+      
+      // Scroll to success
+      successDisplay.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    
+    function showInfo(message) {
+      infoDisplay.textContent = message;
+      infoDisplay.classList.remove('hidden');
+      errorDisplay.classList.add('hidden');
+      successDisplay.classList.add('hidden');
+      
+      // Scroll to info
+      infoDisplay.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    
     function hideError() {
-      errorDisplay.style.display = 'none';
+      errorDisplay.classList.add('hidden');
+      successDisplay.classList.add('hidden');
+      infoDisplay.classList.add('hidden');
     }
-
-    // Initialize dashboard
-    window.addEventListener('load', async () => {
-      // Check authentication first
-      if (!(await checkAuth())) {
-        return;
-      }
-      
-      // Get current user information
-      const userData = await getCurrentUser();
-      if (userData) {
-        // Populate user info
-        userEmail.textContent = userData.email;
-        userId.textContent = userData.id;
-        kycStatus.textContent = userData.kyc_status;
-        
-        // Show user info and actions
-        userInfo.style.display = 'block';
-        actions.style.display = 'block';
-      }
-      
-      // Initial status check
-      const isVerified = await checkVerificationStatus();
-      
-      // Start polling if not verified
-      if (!isVerified) {
-        startPolling();
-      }
-    });
-
-    // Handle page visibility changes to pause/resume polling
-    document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
-        stopPolling();
-      } else if (pollInterval === null) {
-        // Resume polling if we were polling before
-        const token = sessionStorage.getItem('access_token');
-        if (token) {
-          checkVerificationStatus().then(isVerified => {
-            if (!isVerified) {
-              startPolling();
-            }
-          });
-        }
-      }
-    });
+    
+    // Initialize price display
+    updatePriceDisplay();
   </script>
 </body>
 </html>
