@@ -303,6 +303,8 @@
 
         showSuccess('Successfully signed in!');
         console.log('Magic link redeemed, user data:', data.user);
+        console.log('Response headers:', [...response.headers.entries()]);
+        console.log('All cookies:', document.cookie);
         
         // Clear URL parameters
         const url = new URL(window.location);
