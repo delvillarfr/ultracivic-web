@@ -219,6 +219,9 @@
     const infoDisplay = document.getElementById('info-display');
     const verifyButton = document.getElementById('verify-button');
 
+    // Flag to prevent multiple auth checks
+    let isProcessingAuth = false;
+
     // Check for magic link redemption in URL
     window.addEventListener('load', () => {
       const urlParams = new URLSearchParams(window.location.search);
@@ -226,6 +229,7 @@
       
       if (token) {
         // This is a magic link redemption
+        isProcessingAuth = true;
         redeemMagicLink(token);
       } else {
         // Check if user is already authenticated
@@ -298,6 +302,7 @@
         }
 
         showSuccess('Successfully signed in!');
+        console.log('Magic link redeemed, user data:', data.user);
         
         // Clear URL parameters
         const url = new URL(window.location);
@@ -306,25 +311,36 @@
         
         // Show appropriate section based on user status
         if (data.user.kyc_status === 'verified') {
+          console.log('User is verified, redirecting to dashboard');
           // Redirect to dashboard if already verified
           window.location.href = 'dashboard.html';
         } else {
+          console.log('User needs KYC, showing KYC section');
           // Show KYC section
           authSection.style.display = 'none';
           kycSection.style.display = 'block';
         }
         
+        isProcessingAuth = false;
+        
       } catch (error) {
+        console.error('Magic link redemption failed:', error);
         showError(error.message);
         // Clear the token from URL on error
         const url = new URL(window.location);
         url.searchParams.delete('token');
         window.history.replaceState({}, '', url);
+        isProcessingAuth = false;
       }
     }
 
     // Check current authentication status
     async function checkAuthStatus() {
+      if (isProcessingAuth) {
+        console.log('Skipping auth check - processing magic link');
+        return;
+      }
+      
       try {
         const response = await fetch(`${API_BASE}/auth/session`, {
           method: 'GET',
