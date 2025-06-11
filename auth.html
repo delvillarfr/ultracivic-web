@@ -261,7 +261,10 @@
         const data = await response.json();
 
         if (!response.ok) {
-          throw new Error(data.detail || 'Failed to send magic link');
+          const errorMessage = typeof data.detail === 'string' 
+            ? data.detail 
+            : data.detail?.message || data.message || 'Failed to send magic link';
+          throw new Error(errorMessage);
         }
 
         showSuccess('Magic link sent! Check your email and click the link to sign in.');
@@ -288,7 +291,10 @@
         const data = await response.json();
 
         if (!response.ok) {
-          throw new Error(data.detail || 'Failed to sign in');
+          const errorMessage = typeof data.detail === 'string' 
+            ? data.detail 
+            : data.detail?.message || data.message || 'Failed to sign in';
+          throw new Error(errorMessage);
         }
 
         showSuccess('Successfully signed in!');
@@ -362,7 +368,10 @@
         const data = await response.json();
 
         if (!response.ok) {
-          throw new Error(data.detail || 'Failed to start verification');
+          const errorMessage = typeof data.detail === 'string' 
+            ? data.detail 
+            : data.detail?.message || data.message || 'Failed to start verification';
+          throw new Error(errorMessage);
         }
 
         // Redirect to Stripe verification
