@@ -683,6 +683,18 @@
       const total = allowances * 24; // $20 + $4 per allowance
       
       priceTotal.textContent = total.toFixed(2);
+      
+      // Update the unit price display to show current quantity
+      const unitPriceElement = document.querySelector('.price-display .price-row:nth-child(2) span:first-child');
+      if (unitPriceElement) {
+        unitPriceElement.textContent = `Unit price per allowance retirement (${allowances} allowance${allowances > 1 ? 's' : ''}):`;
+      }
+      
+      // Update processing fee display
+      const processingFeeElement = document.querySelector('.price-display .price-row:nth-child(3) span:last-child');
+      if (processingFeeElement) {
+        processingFeeElement.textContent = `$${(allowances * 4).toFixed(2)}`;
+      }
     }
     
     // Handle order form submission
@@ -693,7 +705,7 @@
       const ethAddress = ethAddressInput.value.trim() || null;
       
       if (tonnes < 1 || tonnes > 1000) {
-        showError('Please enter between 1 and 1000 tonnes');
+        showError('Please enter between 1 and 1000 allowances');
         return;
       }
       
