@@ -342,7 +342,7 @@
         <div class="payment-steps">
           <h4>How it works:</h4>
           <ol>
-            <li>Choose how many tonnes of CO2 to retire</li>
+            <li>Choose how many CO2 allowances to retire</li>
             <li>Authorize payment with your card (not charged yet)</li>
             <li>Complete identity verification if needed</li>
             <li>Payment is captured and allowances are retired</li>
@@ -352,33 +352,29 @@
         
         <form id="order-form" class="order-form">
           <div class="form-group">
-            <label for="tonnes">Tonnes of CO2 to Retire</label>
+            <label for="tonnes">CO2 Allowances to Retire</label>
             <input type="number" id="tonnes" name="tonnes" min="1" max="1000" value="1" required>
-            <small>Minimum: 1 tonne, Maximum: 1,000 tonnes</small>
+            <small>Minimum: 1 allowance, Maximum: 1,000 allowances</small>
           </div>
           
           <div class="form-group">
             <label for="eth-address">Ethereum Address (Optional)</label>
             <input type="text" id="eth-address" name="eth_address" placeholder="0x...">
-            <small>Leave blank to receive tokens later. You'll get 0.3 $UCRGGI per tonne.</small>
+            <small>Leave blank to receive tokens later.</small>
           </div>
           
           <div id="price-display" class="price-display">
-            <div class="price-row">
-              <span>CO2 Retirement (<span id="price-tonnes">1</span> tonnes @ $20/tonne):</span>
-              <span>$<span id="price-amount">20.00</span></span>
-            </div>
-            <div class="price-row">
-              <span>Processing Fee:</span>
-              <span>$4.00</span>
-            </div>
             <div class="price-row price-total">
               <span>Total:</span>
               <span>$<span id="price-total">24.00</span></span>
             </div>
-            <div class="price-row" id="tokens-display">
-              <span>Tokens to receive:</span>
-              <span><span id="tokens-amount">0.3</span> $UCRGGI</span>
+            <div class="price-row">
+              <span>Unit price per allowance retirement:</span>
+              <span>$20.00</span>
+            </div>
+            <div class="price-row">
+              <span>Processing fee per allowance:</span>
+              <span>$4.00</span>
             </div>
           </div>
           
@@ -641,7 +637,7 @@
           </div>
           <div class="order-details">
             <div class="detail-item">
-              <span class="detail-label">CO2 Tonnes:</span>
+              <span class="detail-label">CO2 Allowances:</span>
               <span>${order.tonnes_co2}</span>
             </div>
             <div class="detail-item">
@@ -683,19 +679,10 @@
     
     // Update price display
     function updatePriceDisplay() {
-      const tonnes = parseInt(tonnesInput.value) || 1;
-      const amount = tonnes * 20;
-      const total = amount + 4;
-      const tokens = tonnes * 0.3;
+      const allowances = parseInt(tonnesInput.value) || 1;
+      const total = allowances * 24; // $20 + $4 per allowance
       
-      priceTonnes.textContent = tonnes;
-      priceAmount.textContent = amount.toFixed(2);
       priceTotal.textContent = total.toFixed(2);
-      tokensAmount.textContent = tokens.toFixed(1);
-      
-      // Show/hide tokens display based on ETH address
-      const hasEthAddress = ethAddressInput.value.trim().length > 0;
-      tokensDisplay.style.display = hasEthAddress ? 'flex' : 'none';
     }
     
     // Handle order form submission
@@ -757,7 +744,7 @@
         </div>
         <div class="order-details">
           <div class="detail-item">
-            <span class="detail-label">CO2 Tonnes:</span>
+            <span class="detail-label">CO2 Allowances:</span>
             <span>${currentOrder.tonnes_co2}</span>
           </div>
           <div class="detail-item">
